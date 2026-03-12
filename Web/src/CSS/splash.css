@@ -1,0 +1,106 @@
+.splash-container {
+  position: fixed;
+  top:0; left:0;
+  width:100vw;
+  height:100vh;
+  background: #050a0f;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  perspective:1000px;
+  z-index: 9999;
+}
+
+/* طبقات الطبيعة */
+.layer {
+  position:absolute;
+  width:100%;
+  height:100%;
+  background-repeat:no-repeat;
+  background-size:cover;
+  opacity:0;
+  filter: brightness(0.3);
+  animation: fadeIn 2s forwards;
+}
+.mountains { background-image:url('../assets/splashImages/mountains.jpg'); animation-delay:0s; }
+.forest    { background-image:url('../assets/splashImages/forest.jpg');   animation-delay:2s; }
+.lake      { background-image:url('../assets/splashImages/lake.jpg');     animation-delay:4s;  }
+
+/* النقطة المركزية */
+.light-center {
+  width:20px;
+  height:20px;
+  background: radial-gradient(circle,#2ecc71,#0a3d1d);
+  border-radius:50%;
+  box-shadow:0 0 30px #2ecc71,0 0 60px #2ecc71;
+  animation: pulse 2s infinite;
+}
+
+/* الشهب */
+.shooting-star {
+  position:absolute;
+  width:2px;
+  height:80px;
+  background: linear-gradient(to bottom, #fff, transparent);
+  top: -10%;
+  left: 10%;
+  transform: rotate(45deg);
+  animation: shooting 2s linear infinite;
+}
+.star-2 { left:30%; animation-delay:0.5s; }
+.star-3 { left:50%; animation-delay:1s; }
+.star-4 { left:70%; animation-delay:1.5s; }
+.star-5 { left:90%; animation-delay:2s; }
+
+/* الأوراق */
+.leaf {
+  position:absolute;
+  width:10px;
+  height:20px;
+  background: #27ae60;
+  border-radius:50%;
+  top:-10%;
+  animation: fall 4s linear infinite;
+}
+.leaf-2 { left:15%; animation-delay:0.2s; }
+.leaf-3 { left:35%; animation-delay:0.5s; }
+.leaf-4 { left:55%; animation-delay:0.8s; }
+.leaf-5 { left:75%; animation-delay:1.1s; }
+.leaf-6 { left:85%; animation-delay:1.4s; }
+.leaf-7 { left:95%; animation-delay:1.7s; }
+
+/* نص */
+.splash-text {
+  position: absolute;
+  bottom:50px;
+  color:#fff;
+  font-size:2.5rem;
+  opacity:0;
+  animation: textFade 3s forwards 1.5s;
+}
+
+/* أنيميشن */
+@keyframes pulse {
+  0%,100% { transform: scale(1); opacity:0.7; }
+  50% { transform: scale(1.3); opacity:1; }
+}
+
+@keyframes shooting {
+  0% { transform: translateY(0) rotate(45deg); opacity:1; }
+  100% { transform: translateY(110vh) rotate(45deg); opacity:0; }
+}
+
+@keyframes fall {
+  0% { transform: translateY(0) rotate(0deg); opacity:1; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity:0; }
+}
+
+@keyframes fadeIn {
+  to { opacity:1; }
+}
+
+@keyframes textFade {
+  to { opacity:1; }
+}
