@@ -13,6 +13,10 @@ app.use("/api/users", require("./Routes/auth/login"));
 
 // ** Rare Places **
 app.use("/rarePlaces", require("./Routes/RarePlaces/places"));
-app.use("/fetchPlaces",require("./Routes/RarePlaces/getPlaces"))
+app.use("/fetchPlaces",require("./Routes/RarePlaces/getPlaces"));
+
+// ** Challenges ** 
+app.use("/challenges",require("./Routes/Challenges/challengePost"));
+app.use("/getChallenges",require("./Routes/Challenges/getChallenges"))
 
 app.listen(process.env.PORT, () => console.log("Server is running"));

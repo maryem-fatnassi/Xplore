@@ -1,6 +1,6 @@
 const express = require("express");
 const placeRouter = express.Router();
-const Place = require("../../Models/rarePlaces");
+const Place = require("../../Models/RegisteredUsers/rarePlaces");
 
 placeRouter.get("/place", async (req, res) => {
   try {
@@ -11,4 +11,4 @@ placeRouter.get("/place", async (req, res) => {
   }
 });
 
-module.exports=placeRouter;
+module.exports = placeRouter;

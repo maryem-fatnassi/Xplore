@@ -4,6 +4,7 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import GalaxyButton from "../../../Components/ButtonExplore";
+import { fetchPlaces } from "../../../Services/placesService/rarePlaces";
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -71,16 +72,9 @@ const VerticalSlider = () => {
   const rightSlideStyle = {
     transform: `translateY(-${activeIndex * 100}vh)`,
   };
-
-  // fetch data
-  const fetchPlaces = ()=>{
-    fetch("http://localhost:5000/fetchPlaces/place")
-      .then((res) => res.json())
-      .then((data) => setPlaceData(data))
-      .catch((error) => console.error(error));
-  }
+// const fourPlaces = placeData.slice(0,4);
   useEffect(() => {
-    fetchPlaces();
+    fetchPlaces(setPlaceData);
   }, []);
 
   return (
