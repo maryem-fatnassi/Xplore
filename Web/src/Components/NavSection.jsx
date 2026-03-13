@@ -1,49 +1,49 @@
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import "../CSS/RegisteredUsersCss/navSection.css";
-import Button from "react-bootstrap/Button";
+import React, { useState } from 'react';
+import '../CSS/RegisteredUsersCss/navSection.css';
 
-function NavSection() {
+const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
-    <div className="navbar-container">
-      <Navbar expand="lg" className="navbar-section">
-        <Container>
-          <Navbar.Brand href="#"><span>X-</span>Plore</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav" style={{marginLeft:90}}>
-            <Nav className="me-auto">
-              <Nav.Link href="#home" className="nav_link">Home</Nav.Link>
-              <Nav.Link href="#link" className="nav_link">Challenges</Nav.Link>
-              <Nav.Link href="#link" className="nav_link">Rare places</Nav.Link>
-              <Nav.Link href="#link" className="nav_link">Contact</Nav.Link>
-            </Nav>
-            <div className="nav-icons">
-              <div className="notification-profile-icons">
-                <i className="bi bi-bell-fill"></i>
-                <i className="bi bi-person-fill" style={{fontSize:22,marginLeft:20}}></i>
-              </div>
-            </div>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-    </div>
-  );
-}
+    <nav className="navbar">
+      <div className="navbar-container">
+        {/* الشعار */}
+        <div className="logo">X-Plore</div>
 
-export default NavSection;
-            {/* <div className="bg-icons">
-                <span><i class="bi bi-tree-fill"></i></span>
-                <span><i class="bi bi-moon-fill"></i></span>
-                <span><i class="bi bi-cloud-fill"></i></span>
-              </div> */}
-                            {/* <button class="btn-53">
-                <div class="original">LogIn</div>
-                <div class="letters">
-                  <span>L</span>
-                  <span>o</span>
-                  <span>g</span>
-                  <span>I</span>
-                  <span>n</span>
-                </div>
-              </button> */}
+        {/* الروابط - تظهر وتختفي في الجوال بناءً على حالة isMenuOpen */}
+        <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#rare-places">Rare places</a></li>
+          <li><a href="#challenges">Challenges</a></li>
+          <li><a href="#rare-places">Posts</a></li>
+          <li><a href="#contact">Contact</a></li>
+          
+          {/* أيقونات الجوال (تظهر داخل القائمة المنسدلة فقط في الشاشات الصغيرة) */}
+          <li className="mobile-icons">
+            <span className="icon"><i class="fa-solid fa-bell"></i></span>
+            <span className="icon"><i class="fa-solid fa-user"></i></span>
+          </li>
+        </ul>
+
+        {/* الأيقونات للشاشات الكبيرة */}
+        <div className="desktop-icons">
+          <button className="icon-btn" title="Notifications"><i class="fa-solid fa-bell"></i></button>
+          <button className="icon-btn" title="Profile"><i class="fa-solid fa-user"></i></button>
+        </div>
+
+        {/* زر القائمة للجوال (Hamburger Menu) */}
+        <div className="menu-toggle" onClick={toggleMenu}>
+          <div className={`bar ${isMenuOpen ? 'close' : ''}`}></div>
+          <div className={`bar ${isMenuOpen ? 'close' : ''}`}></div>
+          <div className={`bar ${isMenuOpen ? 'close' : ''}`}></div>
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;

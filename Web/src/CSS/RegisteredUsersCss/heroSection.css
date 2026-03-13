@@ -1,0 +1,206 @@
+/* تنسيقات القسم الترحيبي (Hero) */
+.hero-container {
+  height: 100vh; /* يأخذ طول الشاشة بالكامل */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden; /* لمنع ظهور أي عناصر تخرج عن النطاق */
+  font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
+  /* 1. الخلفية الجذابة والمتحركة */
+  /* يمكنك استبدال الرابط بصورة جبال أو مغامرة حقيقية لديك */
+  background-image: url('https://deih43ym53wif.cloudfront.net/pamukkale-turkey-shutterstock_1429356797_f2026937cf.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* تأثير Parallax بسيط */
+}
+
+/* 2. تراكب خلفي ملون لإضافة حركة وعمق */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* تدرج لوني متحرك بين الأزرق الداكن والأسود ليعطي طابع الاستكشاف */
+  background: linear-gradient(135deg, rgba(16, 24, 40, 0.9) 0%, rgba(10, 15, 25, 0.8) 50%, rgba(37, 99, 235, 0.4) 100%);
+  z-index: 1;
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite; /* حركة الخلفية */
+}
+
+/* 3. تنسيق المحتوى */
+.hero-content {
+  position: relative;
+  z-index: 10; /* فوق التراكب */
+  text-align: center;
+  color: #fff;
+  padding: 0 20px;
+  max-width: 900px;
+  opacity: 0; /* مخفي في البداية */
+  transform: translateY(30px); /* يبدأ من الأسفل قليلاً */
+}
+
+/* حركة الظهور عند تحميل الصفحة */
+.hero-content.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+/* 4. تنسيقات النصوص وحركاتها */
+.hero-subtitle {
+  font-size: 1.2rem;
+  font-weight: 300;
+  letter-spacing: 5px;
+  margin-bottom: 10px;
+  color: #a0aec0; /* لون رمادي فاتح */
+  text-transform: uppercase;
+}
+
+.hero-title {
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.text-highlight {
+  /* تدرج لوني للنص نفسه */
+  background: linear-gradient(135deg, #60a5fa, #2563eb);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  position: relative;
+}
+
+.text-highlight::after {
+  /* خط سفلي متحرك تحت الكلمة المميزة */
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 4px;
+  background-color: #2563eb;
+  transition: width 0.5s ease-in-out;
+  transition-delay: 1s; /* يظهر بعد ظهور النص */
+}
+
+.hero-content.fade-in .text-highlight::after {
+  width: 100%; /* يتمدد عند تحميل الصفحة */
+}
+
+.hero-description {
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.8;
+  margin-bottom: 40px;
+  color: #e2e8f0;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  direction: rtl; /* لجعل النص العربي يظهر بشكل صحيح */
+}
+
+/* 5. تنسيق الأزرار */
+.hero-btns {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.btn-primary, .btn-secondary {
+  padding: 15px 35px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: #fff;
+}
+
+/* 6. تأثيرات جرافيكية إضافية (اختياري) */
+.bouncing-ball {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.3);
+  z-index: 5;
+}
+
+.bouncing-ball::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -4px;
+  width: 10px;
+  height: 10px;
+  background-color: #2563eb;
+  border-radius: 50%;
+  animation: bounce 2s infinite;
+}
+
+/* 7. تعريف الحركات (Animations Keyframes) */
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes bounce {
+  0%, 100% { top: 0; }
+  50% { top: 40px; }
+}
+
+/* للتجاوب مع الشاشات الصغيرة */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+    letter-spacing: 3px;
+  }
+  
+  .hero-description {
+    font-size: 1rem;
+  }
+  
+  .btn-primary, .btn-secondary {
+    padding: 12px 25px;
+    font-size: 1rem;
+  }
+}

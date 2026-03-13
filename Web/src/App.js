@@ -2,6 +2,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Pages/RegisteredUsers-UI/Home-UI/Home";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import GalaxyButton from "./Components/ButtonExplore";
+import GreetAnimation from "./Pages/RegisteredUsers-UI/Home-UI/GreetAnimation";
+import Navbar from "./Components/NavSection";
+import HeroSection from "./Pages/RegisteredUsers-UI/Home-UI/HeroSection";
+import AboutSection from "./Pages/RegisteredUsers-UI/AboutSection";
+import RarePlaces from "./Pages/RegisteredUsers-UI/Home-UI/RarePlaces2";
+import Challenges from "./Pages/RegisteredUsers-UI/Home-UI/Challenges";
+import SocialFeed from "./Pages/RegisteredUsers-UI/Home-UI/SocialFeed";
+import Footer from "./Components/Footer";
 // import Login from "./Pages/Login";
 // import Home from "./Pages/Home";
 // import SignUp from "./Pages/SignUp";
@@ -52,9 +60,15 @@ function App() {
   return (
     <div className="App">
       {/* <ArchScroll/> */}
-      <Home/>
+      <Navbar/>
       {/* <VerticalSlider/> */}
       {/* <Splash/>*/}
+      <HeroSection/>
+      <AboutSection/>
+      <RarePlaces/>
+      <Challenges/>
+      <SocialFeed/>
+      <Footer/>
     </div>
   );
 }

@@ -1,0 +1,134 @@
+.challenges-section {
+  padding: 100px 0;
+  background: radial-gradient(circle at top right, #1a1a2e, #0b0f19);
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+
+/* العنصر المتحرك في الخلفية (Infinite Animation) */
+.infinite-bg-element {
+position: absolute;
+    width: 470px;
+    height: 470px;
+    background: radial-gradient(circle, rgb(248 155 11 / 60%) 0%, white 70%);
+    /* top: -100px; */
+    /* left: -100px; */
+    border-radius: 50%;
+    filter: blur(127px);
+    animation: moveAround 20s infinite alternate-reverse;
+    z-index: 0;
+}
+
+@keyframes moveAround {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(100vw, 50vh); }
+}
+
+.section-intro {
+  text-align: center;
+  z-index: 2;
+  position: relative;
+  margin-bottom: 60px;
+}
+
+.glitch-text {
+  font-size: 3rem;
+  font-weight: 900;
+  color: #f59e0b; /* لون برتقالي فخم كسرنا به اللون الأزرق */
+  text-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+}
+
+/* الكروت وتنسيق الظهور التدريجي */
+.challenges-container {
+display: flex;
+    overflow-x: auto;
+    gap: 25px;
+    padding: 20px 10px;
+    z-index: 2;
+    position: relative;
+    scrollbar-width: none;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+.challenge-card {
+  min-width: 300px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px); /* تأثير الزجاج */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 30px;
+  padding: 15px;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transform: translateY(50px);
+  animation: slideUp 0.8s forwards;
+  animation-delay: var(--delay); /* كل كرت يظهر بعد الذي قبله */
+}
+
+@keyframes slideUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.challenge-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #f59e0b;
+  box-shadow: 0 0 30px rgba(245, 158, 11, 0.2);
+}
+
+.challenge-img {
+  width: 100%;
+  height: 200px;
+  border-radius: 20px;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+.card-badge {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  background: #f59e0b;
+  color: #000;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.challenge-details h3 {
+  font-size: 1.4rem;
+  margin-bottom: 5px;
+}
+
+.challenge-details h3 span {
+  display: block;
+  font-size: 0.8rem;
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+.stats {
+  margin: 15px 0;
+  font-size: 0.9rem;
+  color: #cbd5e1;
+}
+
+.join-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 15px;
+  border: none;
+  background: #fff;
+  color: #000;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.join-btn:hover {
+  background: #f59e0b;
+  color: #fff;
+}
