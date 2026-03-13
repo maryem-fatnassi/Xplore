@@ -15,7 +15,7 @@ import Footer from "./Components/Footer";
 // import SignUp from "./Pages/SignUp";
 // import PortalPreloader from "./Splash";
 // import Preloader from "./Splash";
-// import Splash from "./Components/Splash";
+import Splash from "./Components/Splash";
 // import Home from "./Pages/RegisteredUsers-UI/Home-UI/Home";
 
 // function App(){
@@ -60,15 +60,15 @@ function App() {
   return (
     <div className="App">
       {/* <ArchScroll/> */}
-      <Navbar/>
+      {/* <Navbar/> */}
       {/* <VerticalSlider/> */}
-      {/* <Splash/>*/}
-      <HeroSection/>
+      <Splash/>
+      {/* <HeroSection/>
       <AboutSection/>
       <RarePlaces/>
       <Challenges/>
       <SocialFeed/>
-      <Footer/>
+      <Footer/> */}
     </div>
   );
 }

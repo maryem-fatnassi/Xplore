@@ -1,48 +1,48 @@
-import React, { useEffect, useState } from "react";
-import "../CSS/splash.css";
-import Home from "../Pages/RegisteredUsers-UI/Home-UI/Home";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import '../CSS/splash.css';
+import { useNavigate } from 'react-router-dom';
 
-export default function Splash({ onFinish }) {
-  const [show, setShow] = useState(true);
-  const navigate = useNavigate();
-  
+const Preloader = () => {
+  const [loading, setLoading] = useState(true);
+  const [percent, setPercent] = useState(0);
+  const navigate = useNavigate;
   useEffect(() => {
-    // Preloader يدوم 4 ثواني
-    const timer = setTimeout(() => {
-      setShow(false);
-      if (onFinish) onFinish();
-      navigate("/home", { replace: true });
-    }, 8000);
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [onFinish]);
+    // محاكاة لزيادة النسبة المئوية
+    const interval = setInterval(() => {
+      setPercent((prev) => (prev < 100 ? prev + 1 : 100));
+    }, 30);
 
-  if (!show) return null;
+    // إخفاء الـ Preloader بعد التحميل
+    window.onload = () => {
+      setTimeout(() => setLoading(false), 3500);
+    };
+
+    return () => clearInterval(interval);
+  }, []);
+
+  if (!loading) return null;
 
   return (
-    <div className="splash-container">
-      {/* طبقات الطبيعة */}
-      <div className="layer mountains"></div>
-      <div className="layer forest"></div>
-      <div className="layer lake"></div>
+    <div className="preloader-wrapper">
+      <div className="scanner-container">
+        {/* الدائرة المحيطة (الرادار) */}
+        <div className="radar-circle"></div>
+        
+        {/* الشعار في المنتصف */}
+        <div className="loader-logo">
+          X<span>-</span>PLORE
+        </div>
 
-      {/* النقطة المركزية */}
-      <div className="light-center"></div>
-
-      {/* الشهب */}
-      {[...Array(5)].map((_, i) => (
-        <div key={i} className={`shooting-star star-${i + 1}`} />
-      ))}
-
-      {/* الأوراق */}
-      {[...Array(7)].map((_, i) => (
-        <div key={i} className={`leaf leaf-${i + 1}`} />
-      ))}
-
-      {/* نص متحرك */}
-      <div className="splash-text">Your adventure begins...</div>
+        {/* معلومات المسح التقني */}
+        <div className="scan-info">
+          <div className="scan-line"></div>
+          <p className="status-text">SYSTEM_SCANNING...</p>
+          <p className="percent-text">{percent}%</p>
+          <p className="coord-text">LAT: 34.0522 N / LONG: 118.2437 W</p>
+        </div>
+      </div>
     </div>
   );
-}
+};
+
+export default Preloader;
