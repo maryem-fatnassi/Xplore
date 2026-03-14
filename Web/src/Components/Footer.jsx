@@ -1,14 +1,12 @@
 import React from 'react';
-import '../CSS/footer.css';
+import '../CSSComponents/footer.css';
 
 const Footer = () => {
   return (
     <footer className="unconventional-footer">
-      {/* الجزء العلوي: شكل مائل يكسر حدة الصفحة */}
       <div className="footer-skew-bg"></div>
 
       <div className="footer-inner">
-        {/* 1. الجانب الأيسر: بوصلة تقنية متحركة */}
         <div className="footer-compass-section">
           <div className="compass">
             <div className="compass-inner">
@@ -22,18 +20,16 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* 2. الجانب الأوسط: الشعار والروابط بشكل مبعثر مدروس */}
         <div className="footer-main-info">
           <h2 className="glitch-logo" data-text="X-PLORE">X-PLORE</h2>
           <nav className="scattered-nav">
-            <a href="#home" className="nav-item">START_POINT</a>
-            <a href="#challenges" className="nav-item">THE_TRIALS</a>
-            <a href="#places" className="nav-item">HIDDEN_ZONES</a>
-            <a href="#contact" className="nav-item">SIGNAL_BASE</a>
+            <a href="#home" className="nav-item">HOME</a>
+            <a href="#challenges" className="nav-item">RARE PLACES</a>
+            <a href="#places" className="nav-item">CHALLENGES</a>
+            <a href="#contact" className="nav-item">POSTS</a>
           </nav>
         </div>
 
-        {/* 3. الجانب الأيمن: اشتراك "النشرة السرية" بتصميم مختلف */}
         <div className="footer-cta">
           <p>JOIN THE EXPEDITION</p>
           <div className="input-hex-wrapper">

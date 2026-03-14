@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../CSS/RegisteredUsersCss/aboutSection.css';
+import '../../../CSS/RegisteredUsersCss/aboutSection.css';
 
 const AboutSection = () => {
 const features = [

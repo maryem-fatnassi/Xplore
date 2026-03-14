@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import '../CSS/RegisteredUsersCss/buttonExplore.css';
+import '../CSSComponents/buttonExplore.css';
 
 const RANDOM = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
 

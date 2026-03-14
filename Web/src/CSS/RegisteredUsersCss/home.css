@@ -3,17 +3,4 @@
     height: 100vh;
     position: relative;
 }
-.home-section .group-video{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    flex: 1;
-    object-fit: cover;
-    max-height: 680px;
-    min-height: 680px;
-    margin-top: 60px;
-    pointer-events: none;
-    filter: brightness(0.3);
-}
+

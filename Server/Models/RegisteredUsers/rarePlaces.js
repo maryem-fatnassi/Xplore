@@ -8,7 +8,7 @@ const placeSchema = new mongoose.Schema({
     type: String,
   },
   location: {
-    type: Object,
+    type: String,
   },
   desc: {
     type: String,

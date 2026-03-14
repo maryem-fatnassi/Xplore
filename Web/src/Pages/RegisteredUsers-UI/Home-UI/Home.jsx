@@ -1,17 +1,24 @@
 import React from "react";
-import NavSection from "../../../Components/NavSection";
 // import video from "../../assets/homePage/group-video.mp4";
 import "../../../CSS/RegisteredUsersCss/home.css";
-import GalleryOverlay from "./GreetAnimation";
-import ArchScroll from "./ArchScroll";
-import VerticalSlider from "./RarePlaces";
-import Starfield from "../../../Components/Starfield";
+import HeroSection from "./HeroSection";
+import AboutSection from "./AboutSection";
+import RarePlaces from "./RarePlaces2";
+import Challenges from "./Challenges";
+import SocialFeed from "./SocialFeed";
+import Footer from "../../../Components/Footer";
+import Navbar from "../../../Components/NavSection";
 
 function Home() {
   return (
     <div className="home-section">
-      <NavSection />
-      {/* <video src={video} className='group-video' loop muted autoPlay/> */}
+      <Navbar/>
+      <HeroSection/>
+      <AboutSection/>
+      <RarePlaces/>
+      <Challenges/>
+      <SocialFeed/>
+      <Footer/>
     </div>
   );
 }
