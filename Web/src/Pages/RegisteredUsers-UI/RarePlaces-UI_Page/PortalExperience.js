@@ -7,7 +7,9 @@ import '../../../CSS/RegisteredUsersCss/RarePlacesCSS/portalExperience.css';
 // مكون العالم الـ 360
 const Panorama = ({ image }) => {
   const texture = useTexture(image);
+  texture.image.crossOrigin = "anonymous";
   return (
+    
     <Sphere args={[500, 60, 40]} scale={[-1, 1, 1]}>
       <meshBasicMaterial map={texture} side={THREE.BackSide} />
     </Sphere>
@@ -16,7 +18,7 @@ const Panorama = ({ image }) => {
 
 const PortalExperience = ({ isOpen, onClose, place }) => {
   if (!isOpen) return null;
-
+// const proxyUrl = "https://cors-anywhere.herokuapp.com/";
   return (
     <div className={`portal-overlay ${isOpen ? 'active' : ''}`}>
       {/* زر الخروج من المهمة */}
@@ -35,7 +37,7 @@ const PortalExperience = ({ isOpen, onClose, place }) => {
       <div className="canvas-container">
         <Canvas camera={{ position: [0, 0, 0.1] }}>
           <Suspense fallback={null}>
-            <Panorama image={place.img} />
+            <Panorama image={ place.img} />
             <OrbitControls 
               enableZoom={false} 
               enablePan={false} 

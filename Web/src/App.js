@@ -2,6 +2,7 @@
 import Home from "./Pages/RegisteredUsers-UI/Home-UI/Home";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import RarePlacesPage from "./Pages/RegisteredUsers-UI/RarePlaces-UI_Page/rarePlaces";
+import ChallengesPage from "./Pages/RegisteredUsers-UI/Challenges-UI_Page/ChallengesPage";
 // import Home from "./Pages/RegisteredUsers-UI/Home-UI/Home";
 
 // function App(){
@@ -26,7 +27,8 @@ function App() {
   return (
     <div className="App">
       {/* <Home/> */}
-      <RarePlacesPage/>
+      {/* <RarePlacesPage/> */}
+      <ChallengesPage/>
     </div>
   );
 }

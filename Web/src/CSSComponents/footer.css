@@ -2,7 +2,7 @@
   background-color: #05080f;
   padding: 150px 0 0 0;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
   color: #fff;
   font-family: 'Courier New', Courier, monospace;
 }
