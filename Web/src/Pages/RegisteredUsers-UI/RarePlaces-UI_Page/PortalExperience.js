@@ -37,7 +37,7 @@ const PortalExperience = ({ isOpen, onClose, place }) => {
       <div className="canvas-container">
         <Canvas camera={{ position: [0, 0, 0.1] }}>
           <Suspense fallback={null}>
-            <Panorama image={ place.img} />
+            <Panorama image={ place.image} />
             <OrbitControls 
               enableZoom={false} 
               enablePan={false} 

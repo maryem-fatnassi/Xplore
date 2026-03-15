@@ -27,8 +27,8 @@ function App() {
   return (
     <div className="App">
       {/* <Home/> */}
-      {/* <RarePlacesPage/> */}
-      <ChallengesPage/>
+      <RarePlacesPage/>
+      {/* <ChallengesPage/> */}
     </div>
   );
 }
