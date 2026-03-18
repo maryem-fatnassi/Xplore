@@ -4,6 +4,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import RarePlacesPage from "./Pages/RegisteredUsers-UI/RarePlaces-UI_Page/rarePlaces";
 import ChallengesPage from "./Pages/RegisteredUsers-UI/Challenges-UI_Page/ChallengesPage";
 import FeedPage from "./Pages/RegisteredUsers-UI/PostsPage/FeedPage";
+import Login from "./Pages/Login";
 // import Home from "./Pages/RegisteredUsers-UI/Home-UI/Home";
 
 // function App(){
@@ -30,7 +31,8 @@ function App() {
       {/* <Home/> */}
       {/* <RarePlacesPage/> */}
       {/* <ChallengesPage/> */}
-      <FeedPage/>
+      {/* <FeedPage/> */}
+      <Login/>
     </div>
   );
 }

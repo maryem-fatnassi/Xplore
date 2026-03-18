@@ -1,82 +1,73 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import Globe from "../Components/Globe"
 import "../CSS/authCss/auth.css";
 import { login } from "../Services/authService/login";
+import { Mail, Lock, User, ArrowRight, ShieldCheck, Globe } from 'lucide-react';
 
 function Login(){
+const [isLogin, setIsLogin] = useState(true);
 
-  const navigate = useNavigate()
-  const [zoom,setZoom] = useState(false)
+  return (
+    <div className="auth-wrapper">
+      {/* 1. Background Elements (Animated Orbs) */}
+      <div className="orb orb-1"></div>
+      <div className="orb orb-2"></div>
 
-  const zoomEarth = () => {
-
-    setZoom(true)
-
-    setTimeout(()=>{
-      navigate("/home")
-    },2200)
-
-  }
-
-  const [form , setForm] = useState({
-    email: "",
-    password:""
-  });
-
-  const handleChange = (e)=> {
-    const {name,value} = e.target
-    setForm({
-      ...form,
-      [name] : value
-    })
-  }
-
-  const handleSubmit = async (e)=> {
-    e.preventDefault()
-    const {email,password} = form;
-    if(!email|| !password){
-       alert('please fill in all the fields')
-       return
-    }
-    try {
-      await login(form)
-      // if(data){
-        zoomEarth()
-      // }
-    } catch (error) {
-      const msg = error.res?.data?.message || "Something went wrong"
-       alert(msg)
-    }
-  }
-
-  return(
-
-    <div className="page">
-
-      <div className="globe">
-        <Globe zoom={zoom}/>
-      </div>
-
-      <form className="card" onSubmit={handleSubmit}>
-
-        <h2>Login</h2>
-        <input placeholder="Email..." name="email" type="email" value={form.email} onChange={handleChange}/>
-        <input placeholder="Password..." name="password"  type="password" value={form.password} onChange={handleChange}/>
-
-        <button type="submit">
-          Start Adventure
-        </button>
-        <div className="question">
-          <p>Don't have an account?</p>
-          <Link to="sign" className="auth-link">Sign Up</Link>
+      <div className="auth-container-glass">
+        {/* Left Side: Branding/Visual */}
+        <div className="auth-visual">
+          <div className="visual-content">
+            <Globe className="visual-icon" size={50} />
+            <h1>X-PLORE</h1>
+            <p>The world is waiting for its next pioneer. Join the elite league of global explorers.</p>
+          </div>
+          <div className="visual-footer">
+            <span>STRICTLY_SECURE_ENCRYPTION</span>
+          </div>
         </div>
-      </form>
 
+        {/* Right Side: Form */}
+        <div className="auth-form-section">
+          <div className="form-header">
+            <h2>{isLogin ? 'LOG_IN' : 'SIGN_UP'}</h2>
+            <p>{isLogin ? 'Enter your credentials to deploy' : 'Register your explorer profile'}</p>
+          </div>
+
+          <form className="main-form" onSubmit={(e) => e.preventDefault()}>
+            {!isLogin && (
+              <div className="input-group">
+                <User className="input-icon" size={18} />
+                <input type="text" placeholder="FULL_NAME" required />
+              </div>
+            )}
+            
+            <div className="input-group">
+              <Mail className="input-icon" size={18} />
+              <input type="email" placeholder="EMAIL_ADDRESS" required />
+            </div>
+
+            <div className="input-group">
+              <Lock className="input-icon" size={18} />
+              <input type="password" placeholder="PASSWORD" required />
+            </div>
+
+            <button type="submit" className="auth-submit-btn">
+              {isLogin ? 'INITIATE_LOGIN' : 'START_EXPEDITION'} <ArrowRight size={18} />
+            </button>
+          </form>
+
+          <div className="form-footer">
+            <p>
+              {isLogin ? "Don't have an ID?" : "Already registered?"}
+              <button onClick={() => setIsLogin(!isLogin)} className="toggle-auth">
+                {isLogin ? 'REGISTER_NOW' : 'GO_TO_LOGIN'}
+              </button>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
-
-  )
-
+  );
 }
 
 export default Login;

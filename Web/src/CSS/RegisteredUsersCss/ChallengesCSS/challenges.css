@@ -4,7 +4,7 @@
   height: 100vh;
   background: #050505;
   color: #fff;
-  font-family: "Orbitron", sans-serif; /* خط تقني */
+  font-family: "Orbitron", sans-serif;
   overflow: hidden;
 }
 
@@ -76,10 +76,55 @@
   color: #666;
 }
 
+.search-container {
+  background-color: #333;
+  width: 100%;
+  direction: ltr;
+  display: flex;
+  justify-content: flex-start;
+  padding: 9px 0;
+  border-radius: 5px;
+}
+
+.search-container input {
+background-color: #333;
+outline: none;
+border: none;
+padding-left: 10px;
+color: #fff;
+}
+
+.search-container i {
+  padding-left: 10px;
+}
+
 /* المحتوى الرئيسي */
 .mission-briefing {
-  padding: 60px;
+  padding: 20px;
   overflow-y: auto;
+}
+
+.mission-briefing .challenge-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mission-briefing .challenge-header p {
+  text-align: center;
+  color: #333;
+}
+
+.mission-briefing .search-bar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.mission-briefing .search-bar p span{
+  font-weight: bold;
+  text-decoration: underline;
 }
 
 .briefing-header {
@@ -94,6 +139,7 @@
   margin: 0;
   text-transform: uppercase;
   letter-spacing: -2px;
+  padding-top: 38px;
 }
 
 .stats-grid {
@@ -103,7 +149,7 @@
 .stat span {
   display: block;
   font-size: 10px;
-  color: #666;
+  color: crimson;
 }
 
 .briefing-content {
@@ -151,6 +197,87 @@
   height: 100%;
   object-fit: cover;
 }
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 5, 15, 0.85); /* تظليل أزرق داكن */
+  backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 2000;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Modal Box */
+.mission-modal-glass {
+  width: 550px;
+  background: rgba(10, 30, 60, 0.6);
+  border: 1px solid rgba(0, 170, 255, 0.3);
+  border-radius: 15px;
+  box-shadow: 0 0 40px rgba(0, 100, 255, 0.2);
+  padding: 0;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+.modal-header {
+  padding: 20px;
+  background: rgba(0, 170, 255, 0.1);
+  display: flex; justify-content: space-between; align-items: center;
+  border-bottom: 1px solid rgba(0, 170, 255, 0.2);
+}
+
+.header-title { display: flex; align-items: center; gap: 10px; font-weight: bold; font-size: 0.8rem; color: #00aaff; letter-spacing: 1px; }
+
+.close-modal { background: none; border: none; color: #fff; cursor: pointer; opacity: 0.5; transition: 0.3s; }
+.close-modal:hover { opacity: 1; transform: rotate(90deg); }
+
+.modal-body { padding: 30px; }
+
+.brief-section h4, .rules-section h4 { 
+  font-size: 0.75rem; color: #00ff88; margin-bottom: 10px; 
+  display: flex; align-items: center; gap: 8px; font-weight: 700;
+}
+
+.brief-section p { font-size: 0.95rem; color: #ccc; line-height: 1.6; margin-bottom: 25px; }
+
+.rules-section ul { list-style: none; padding: 0; margin-bottom: 25px; }
+.rules-section li { 
+  font-size: 0.85rem; color: #aaa; padding: 8px 0; 
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+
+/* Warning Box */
+.warning-box {
+  background: rgba(255, 50, 50, 0.1);
+  border-left: 4px solid #ff4b2b;
+  padding: 15px;
+  display: flex; align-items: center; gap: 15px;
+  color: #ff4b2b; font-weight: bold; font-size: 0.8rem;
+}
+
+/* Footer Buttons */
+.modal-footer {
+  padding: 20px 30px;
+  display: flex; gap: 15px;
+  background: rgba(0,0,0,0.2);
+}
+
+.cancel-btn {
+  flex: 1; padding: 12px; background: transparent; border: 1px solid #333;
+  color: #777; border-radius: 5px; cursor: pointer; transition: 0.3s;
+}
+.cancel-btn:hover { background: #333; color: #fff; }
+
+.confirm-btn {
+  flex: 2; padding: 12px; background: #0055ff; color: #fff; border: none;
+  border-radius: 5px; font-weight: bold; cursor: pointer; transition: 0.3s;
+  box-shadow: 0 5px 15px rgba(0, 85, 255, 0.3);
+}
+.confirm-btn:hover { background: #00aaff; transform: translateY(-2px); }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
 
 /* الرادار والخريطة */
 .location-radar {
