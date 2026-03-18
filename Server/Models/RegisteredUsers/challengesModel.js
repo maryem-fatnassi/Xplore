@@ -22,7 +22,7 @@ const challengeSchema = new mongoose.Schema(
       lat: Number,
       lng: Number,
     },
-    equipment : String,
+    equipment : Array,
     duration : String,
   },
   { timestamps: true },

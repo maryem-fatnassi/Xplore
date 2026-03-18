@@ -4,7 +4,7 @@
   height: 100vh;
   background: #050505;
   color: #fff;
-  font-family: 'Orbitron', sans-serif; /* خط تقني */
+  font-family: "Orbitron", sans-serif; /* خط تقني */
   overflow: hidden;
 }
 
@@ -13,14 +13,23 @@
   border-right: 1px solid #222;
   padding: 40px 20px;
   background: rgba(10, 10, 10, 0.8);
+  direction: rtl;
+  overflow-y: scroll;
 }
 
-.list-label { color: #555; font-size: 12px; margin-bottom: 20px; letter-spacing: 2px; }
+.list-label {
+  color: #ffaa00;
+  font-size: 12px;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+  direction: ltr;
+}
 
 .mission-item {
   display: flex;
   align-items: center;
   padding: 15px;
+  direction: ltr;
   margin-bottom: 10px;
   cursor: pointer;
   border: 1px solid transparent;
@@ -32,27 +41,87 @@
   border-color: #2563eb;
 }
 
-.difficulty-dot { width: 8px; height: 8px; border-radius: 50%; margin-right: 15px; }
-.difficulty-dot.extreme { background: #ff0000; box-shadow: 0 0 10px #ff0000; }
-.difficulty-dot.hard { background: #ffaa00; box-shadow: 0 0 10px #ffaa00; }
+.difficulty-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+.difficulty-dot.extreme {
+  background: #ff0000;
+  box-shadow: 0 0 10px #ff0000;
+}
+.difficulty-dot.hard {
+  background: #ffaa00;
+  box-shadow: 0 0 10px #ffaa00;
+}
 
-.m-title { display: block; font-size: 14px; font-weight: bold; }
-.m-type { font-size: 10px; color: #666; }
+.difficulty-dot.medium{
+  background: #2563eb;
+  box-shadow: 0 0 10px #2563eb;
+}
+
+.difficulty-dot.easy{
+  background: green;
+  box-shadow: 0 0 10px green;
+}
+
+.m-title {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+}
+.m-type {
+  font-size: 10px;
+  color: #666;
+}
 
 /* المحتوى الرئيسي */
-.mission-briefing { padding: 60px; overflow-y: auto; }
+.mission-briefing {
+  padding: 60px;
+  overflow-y: auto;
+}
 
-.briefing-header { display: flex; justify-content: space-between; border-bottom: 1px solid #222; padding-bottom: 30px; }
+.briefing-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #222;
+  padding-bottom: 30px;
+}
 
-.header-text h1 { font-size: 3rem; margin: 0; text-transform: uppercase; letter-spacing: -2px; }
+.header-text h1 {
+  font-size: 3rem;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+}
 
-.stats-grid { display: flex; gap: 40px; }
-.stat span { display: block; font-size: 10px; color: #666; }
+.stats-grid {
+  display: flex;
+  gap: 40px;
+}
+.stat span {
+  display: block;
+  font-size: 10px;
+  color: #666;
+}
 
-.briefing-content { display: grid; grid-template-columns: 1fr 1.5fr; gap: 40px; margin-top: 40px; }
+.briefing-content {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 40px;
+  margin-top: 40px;
+}
 
-.equipment-section ul { list-style: none; padding: 0; }
-.equipment-section li { padding: 10px 0; border-bottom: 1px solid #111; color: #aaa; }
+.equipment-section ul {
+  list-style: none;
+  padding: 0;
+}
+.equipment-section li {
+  padding: 10px 0;
+  border-bottom: 1px solid #111;
+  color: #aaa;
+}
 
 .deploy-btn {
   margin-top: 30px;
@@ -66,32 +135,69 @@
   clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%); /* شكل مائل احترافي */
 }
 
-.image-frame { position: relative; height: 400px; overflow: hidden; border: 1px solid #333; }
-.image-frame img { width: 100%; height: 100%; object-fit: cover; }
-
-/* الرادار والخريطة */
-.location-radar { background: #080808; border-left: 1px solid #222; padding: 20px; }
-
-.leaflet-map { height: 300px; width: 100%; filter: grayscale(1) invert(1) contrast(1.2); } /* جعل الخريطة داكنة */
-
-.global-status { 
-  text-align: center; 
-  padding-top: 100px; 
+.deploy-btn:hover {
+  background-color: #2564ebc5;
 }
 
-.globe-icon { font-size: 80px; animation: rotateGlobe 10s linear infinite; display: inline-block; }
+.image-frame {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+  border: 1px solid #333;
+  box-shadow: 0 0 4px white;
+}
+.image-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* الرادار والخريطة */
+.location-radar {
+  background: #080808;
+  border-left: 1px solid #222;
+  padding: 20px;
+}
+
+.leaflet-map {
+  height: 300px;
+  width: 100%;
+  filter: grayscale(1) invert(1) contrast(1.2);
+} /* جعل الخريطة داكنة */
+
+.global-status {
+  text-align: center;
+  padding-top: 100px;
+}
+
+.globe-icon {
+  font-size: 80px;
+  animation: rotateGlobe 10s linear infinite;
+  display: inline-block;
+}
 
 .map-wrapper {
-    height: 350px; /* أو أي رقم ثابت */
-    width: 100%;
-    position: relative;
-    border: 1px solid #333;
+  height: 350px; /* أو أي رقم ثابت */
+  width: 100%;
+  position: relative;
+  border: 1px solid #333;
 }
 
 /* هذا السطر ضروري جداً لـ Leaflet */
 .leaflet-container {
-    width: 100%;
-    height: 100% !important;
+  width: 100%;
+  height: 100% !important;
 }
 
-@keyframes rotateGlobe { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+/* .header-text h1{
+  color:#666;
+} */
+
+@keyframes rotateGlobe {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

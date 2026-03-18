@@ -1,4 +1,4 @@
-
+// fetch all data
 export const fetchAllPlaces = async (setAllPlaces) => {
     console.log("Fetch function working")
   try {

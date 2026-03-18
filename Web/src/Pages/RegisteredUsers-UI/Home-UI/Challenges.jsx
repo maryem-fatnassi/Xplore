@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../../../CSS/RegisteredUsersCss/challenges.css';
-import { fetchPlaces } from "../../../Services/challengesService/challenges";
+import { fetchChallenges } from "../../../Services/challengesService/challenges";
 
 const Challenges = () => {
   // const challenges = [
@@ -42,7 +42,7 @@ const Challenges = () => {
   // ];
 const [challenges, setChallenges] = useState([]);
 useEffect(() => {
-    fetchPlaces(setChallenges);
+    fetchChallenges(setChallenges);
   }, []);
   console.log(challenges)
   return (

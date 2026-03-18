@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+.xplore-feed-page {
+  background: #02040a; /* خلفية سوداء مائلة للأزرق الداكن جداً */
+  color: #fff;
+  min-height: 100vh;
+  padding: 50px 0;
+  font-family: 'Inter', sans-serif;
+}
+
+.feed-layout { max-width: 680px; margin: 0 auto; padding: 0 20px; }
+
+/* --- نموذج إنشاء منشور زجاجي (Create Post Glass) --- */
+.create-post-glass {
+  background: rgba(10, 25, 50, 0.4); /* أزرق فاخر شفاف */
+  border: 1px solid rgba(100, 200, 255, 0.1);
+  border-radius: 20px; padding: 25px; margin-bottom: 40px;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.create-header { display: flex; gap: 15px; }
+.upload-options {
+    display: flex;
+}
+.default-avatar { color: #333; }
+
+textarea {
+  background: transparent; border: none; color: #fff; width: 100%;
+  resize: none; font-size: 1.1rem; outline: none; padding-top: 5px;
+}
+
+.create-actions {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.media-btn { background: transparent; border: none; color: #aaa; display: flex; align-items: center; gap: 8px; cursor: pointer; transition: 0.3s; }
+.media-btn:hover { color: #00aaff; }
+
+.publish-btn {
+  background: linear-gradient(135deg, #0055ff, #00aaff); /* تدرج أزرق فاخر */
+  color: #fff; border: none; padding: 10px 20px;
+  border-radius: 8px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: 0.3s;
+  box-shadow: 0 4px 15px rgba(0, 100, 255, 0.3);
+}
+.publish-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 100, 255, 0.5); }
+
+/* --- كروت المنشورات الفاخرة (Luxury Post Cards) --- */
+.post-card-luxury {
+  background: #0a0e17; /* أزرق غامق جداً */
+  border: 1px solid rgba(100, 200, 255, 0.05);
+  border-radius: 20px; margin-bottom: 40px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+  transition: 0.3s;
+}
+.post-card-luxury:hover { border-color: rgba(0, 170, 255, 0.2); }
+
+.post-header { display: flex; gap: 15px; padding: 25px; align-items: center; }
+.user-avatar { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid #0055ff; }
+.user-name { margin: 0; font-weight: 700; color: #fff; }
+.user-rank { font-size: 0.7rem; color: #00ff88; text-transform: uppercase; display: block; letter-spacing: 1px; }
+.post-meta { font-size: 0.75rem; color: #555; display: flex; align-items: center; gap: 5px; margin-top: 4px; }
+
+.post-main { padding: 0 25px 25px; }
+.post-desc { color: #ccc; line-height: 1.6; font-size: 1.05rem; font-weight: 300; margin-bottom: 20px; }
+.post-media-wrapper { border-radius: 10px; overflow: hidden; background: #000; }
+.post-img, .post-video { width: 100%; object-fit: cover; display: block; }
+
+/* --- شريط التفاعل الفاخر (Luxury Interaction Bar) --- */
+.post-footer { border-top: 1px solid rgba(255,255,255,0.03); }
+.stats-bar { display: flex; gap: 30px; padding: 20px 25px; }
+
+.stat-btn {
+  background: transparent; border: none; color: #777;
+  display: flex; align-items: center; gap: 8px; cursor: pointer;
+  transition: 0.2s; font-size: 14px; font-weight: 600;
+}
+.stat-btn:hover { color: #00aaff; transform: scale(1.05); }
+
+/* حالة الإعجاب النشطة */
+.stat-btn.liked { color: #ff4b2b; }
+
+/* قسم التعليقات */
+.comments-section {
+  display: none; padding: 0 25px 25px;
+  border-top: 1px solid rgba(255,255,255,0.03);
+}
+.comments-section.active { display: block; }
+
+.comments-list { max-height: 150px; overflow-y: auto; margin-bottom: 15px; }
+.comment-item { font-size: 0.9rem; color: #aaa; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.02); }
+.comment-item strong { color: #fff; margin-right: 5px; }
+
+.comment-input-area {
+  display: flex; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; padding: 5px 15px; align-items: center;
+}
+.comment-input-area input { background: transparent; border: none; color: #fff; flex: 1; padding: 10px; outline: none; font-size: 0.9rem; }
+.send-comment-btn { background: transparent; border: none; color: #00aaff; cursor: pointer; }
+
+/* --- Global Wrapper --- */
+.feed-layout-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  max-width: 1100px; /* Increased to fit sidebar */
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.main-feed-content {
+  flex: 1;
+  max-width: 680px;
+}
+
+/* --- Sidebar Styling --- */
+.expedition-sidebar {
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sidebar-widget {
+  padding: 20px;
+  border-radius: 15px;
+  border: 1px solid rgba(100, 200, 255, 0.05);
+}
+
+.luxury-glass {
+  background: rgba(10, 25, 50, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.widget-title {
+  font-family: 'Syncopate', sans-serif; /* Use your tech font */
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #555;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Explorer Ranking */
+.ranking-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+  padding: 10px;
+  transition: 0.3s;
+  border-radius: 8px;
+}
+
+.ranking-item:hover { background: rgba(0, 170, 255, 0.05); }
+
+.rank-num { font-weight: 900; color: #1a3a5a; font-size: 1.2rem; }
+.rank-name { display: block; font-size: 14px; font-weight: 600; color: #fff; }
+.rank-xp { font-size: 10px; color: #00aaff; text-transform: uppercase; }
+
+/* Trending List */
+.trending-list { list-style: none; padding: 0; }
+.trending-list li {
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  font-size: 13px;
+  color: #ccc;
+  display: flex;
+  justify-content: space-between;
+}
+.trending-list li span { color: #555; font-size: 11px; }
+
+/* Live Status & Buttons */
+.live-status .stat-row { display: flex; justify-content: space-between; margin-bottom: 15px; }
+.mini-stat { font-size: 10px; color: #aaa; display: flex; align-items: center; gap: 5px; }
+.mini-stat.pulse { color: #00ff88; animation: pulseFade 2s infinite; }
+
+.view-map-btn {
+  width: 100%;
+  padding: 12px;
+  background: transparent;
+  border: 1px solid rgba(0, 170, 255, 0.3);
+  color: #00aaff;
+  font-size: 11px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 5px;
+}
+.view-map-btn:hover { background: #00aaff; color: #fff; }
+
+@keyframes pulseFade { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+/* Hide Sidebar on small screens */
+@media (max-width: 1000px) {
+  .expedition-sidebar { display: none; }
+}
