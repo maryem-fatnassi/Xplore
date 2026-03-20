@@ -1,0 +1,268 @@
+/* --- Containers --- */
+.sidebarWrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 360px; /* العرض الافتراضي */
+    z-index: 2000;
+    background: #0b1120; /* الأزرق الداكن الفاخر مع شفافية قليلة */
+    backdrop-filter: blur(15px) saturate(160%); /* تأثير Glassmorphism أقوى للقراءة */
+    -webkit-backdrop-filter: blur(15px) saturate(160%);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: -15px 0 40px rgba(0, 0, 0, 0.4); /* ظل عميق لإبراز الفخامة */
+    
+    display: flex;
+    flex-direction: column;
+    
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    overflow-y: auto; /* يسمح بالتمرير إذا كان المحتوى طويلاً */
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    box-sizing: border-box;
+}
+
+.sidebarWrapper.open {
+    transform: translateX(0);
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6); /* خلفية معتمة أكثر تباينًا */
+    z-index: 1999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* --- Header --- */
+.header {
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.explorerBadge {
+    background: rgba(251, 146, 60, 0.15); /* #FB923C */
+    color: #FB923C;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(251, 146, 60, 0.2);
+}
+
+.closeBtn {
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    color: white;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.closeBtn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: rotate(90deg);
+}
+
+/* --- User Section --- */
+.userSection {
+    padding: 40px 30px;
+    text-align: center;
+}
+
+.avatarContainer {
+    position: relative;
+    width: 110px;
+    height: 110px;
+    margin: 0 auto 20px;
+}
+
+.avatarImage {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px; /* زوايا منحنية حديثة */
+    object-fit: cover;
+    border: 3px solid #1E3A8A;
+    box-shadow: 0 0 25px rgba(251, 146, 60, 0.3); /* توهج برتقالي */
+    transition: 0.4s;
+    background-color: #f1f5f9; /* خلفية افتراضية في حال عدم وجود صورة */
+}
+
+.avatarContainer:hover .avatarImage {
+    transform: translateY(-5px) scale(1.03);
+}
+
+.userName {
+    font-size: 1.6rem;
+    color: white;
+    font-weight: 700;
+    margin: 10px 0 3px;
+    letter-spacing: -0.5px;
+}
+
+.userEmail {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    font-weight: 300;
+}
+
+/* --- Stats Bar --- */
+.statsBar {
+    background: rgba(255, 255, 255, 0.03);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 15px 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px; /* تأثير الحدود بين العناصر */
+}
+
+.statItem {
+    text-align: center;
+    padding: 10px;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.statItem:last-child {
+    border-right: none;
+}
+
+.statCount {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: white;
+}
+
+.statLabel {
+    display: block;
+    font-size: 10px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-top: 3px;
+}
+
+/* --- Navigation --- */
+.navLinks {
+    flex: 1;
+    padding: 25px 20px;
+}
+
+.navButton {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 16px 20px;
+    background: transparent;
+    border: none;
+    color: white;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    margin-bottom: 6px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* تأثير التمرير الفاخر */
+.navButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+    transition: 0.5s;
+}
+
+.navButton:hover::before {
+    left: 100%;
+}
+
+.navButton:hover {
+    background: rgba(251, 146, 60, 0.08); /* برتقالي خفيف جدا */
+    transform: translateX(5px);
+}
+
+.navIconContainer {
+    color: #FB923C;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+}
+
+.navText {
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.logoutBtn {
+    margin-top: 30px;
+    border: 1px solid rgba(255, 107, 107, 0.2);
+}
+
+.logoutBtn .navIconContainer {
+    color: #ff6b6b;
+}
+
+.logoutBtn .navText {
+    color: #ff6b6b;
+}
+
+.logoutBtn:hover {
+    background: rgba(255, 107, 107, 0.1) !important;
+}
+
+/* --- Footer --- */
+.footer {
+    padding: 25px;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.brandText {
+    font-weight: 800;
+    letter-spacing: 4px;
+    font-size: 11px;
+    color: rgba(251, 146, 60, 0.5); /* #FB923C شفاف */
+    text-transform: uppercase;
+}
+
+/* --- Media Queries for Responsiveness --- */
+/* للشاشات المتوسطة والصغيرة (الموبايل) */
+@media (max-width: 480px) {
+    .sidebarWrapper {
+        width: 100%; /* املأ الشاشة بالكامل */
+        max-width: none;
+    }
+    
+    .userSection {
+        padding: 30px 20px;
+    }
+    
+    .userName {
+        font-size: 1.4rem;
+    }
+}

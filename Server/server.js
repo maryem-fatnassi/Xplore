@@ -18,5 +18,12 @@ app.use("/fetchPlaces",require("./Routes/RarePlaces/getPlaces"));
 // ** Challenges ** 
 app.use("/challenges",require("./Routes/Challenges/challengePost"));
 app.use("/getChallenges",require("./Routes/Challenges/getChallenges"))
+app.use("/api/challenges", require("./Routes/Challenges/challengeJoinedUsers"));
+
+//** Posts **/
+app.use("/api/posts",require("./Routes/Posts/createPost"));
+app.use("/api/posts",require("./Routes/Posts/getPosts"));
+app.use("/api/posts",require("./Routes/Posts/likes"));
+app.use("/api/posts",require("./Routes/Posts/comments"))
 
 app.listen(process.env.PORT, () => console.log("Server is running"));

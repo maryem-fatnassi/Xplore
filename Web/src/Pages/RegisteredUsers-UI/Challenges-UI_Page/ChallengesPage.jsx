@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "../../../CSS/RegisteredUsersCss/ChallengesCSS/challenges.css";
@@ -9,18 +9,67 @@ import { fetchAllChallenges } from "../../../Services/challengesService/allChall
 import Navbar from "../../../Components/NavSection";
 import Footer from "../../../Components/Footer";
 import { ShieldAlert, CheckCircle, X, Info, Zap } from 'lucide-react'; 
+import { joinChallengeService } from "../../../Services/challengesService/joinChallenge";
 
 const ChallengesPage = () => {
+  // const [isDeploying, setIsDeploying] = useState(false);
+
+  // const currentUser = JSON.parse(localStorage.getItem("user"));
+  // const userId = currentUser?._id;
+
   const [challengesData, setChallengesData] = useState([]);
   const [inputValue, setinputValue] = useState("");
   const [selected, setSelected] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
-
-  const handleJoinClick = (challenge) => {
-    setSelected(challenge);
-    setShowModal(true);
+const getLoggedUser = () => {
+    const saved = localStorage.getItem("user");
+    if (!saved || saved === "undefined") return null;
+    try {
+      return JSON.parse(saved);
+    } catch (e) {
+      return null;
+    }
   };
+
+  const userData = getLoggedUser();
+  const userId = userData?.id; // هذا هو الـ ID الذي أرسله السيرفر المعدل
+  console.log(userId)
+
+  const openModal = ()=>{
+    setShowModal(true);
+  }
+  
+const handleConfirmJoin = async () => {
+  if (!userId) {
+    alert("خطأ: يجب تسجيل الدخول أولاً للانضمام للتحدي!");
+    return;
+  }
+
+
+  try {
+    // 1. استدعاء الـ Service (التي تستخدم fetch)
+    // نمرر id التحدي المختار و id المستخدم الحالي
+// جرب تغيير السطر في handleConfirmJoin إلى:
+await joinChallengeService(selected._id || selected.id, userId);
+    // 2. تحديث الواجهة الأمامية (Frontend) لزيادة العداد فوراً
+    const updatedList = challengesData.map((ch) => {
+      if (ch.id === selected.id) {
+        return { ...ch, usersJoined: (ch.usersJoined || 0) + 1 };
+      }
+      return ch;
+    });
+
+    setChallengesData(updatedList);
+    setSelected({ ...selected, usersJoined: (selected.usersJoined || 0) + 1 });
+
+    alert(`Mission Accepted! Welcome to the team.`);
+    setShowModal(false);
+  } catch (error) {
+    alert(error.message);
+  }
+};
+
   useEffect(() => {
     fetchAllChallenges(setChallengesData);
   }, []);
@@ -104,7 +153,7 @@ const ChallengesPage = () => {
                   <li key={i}> {item}</li>
                 ))}
               </ul>
-              <button className="deploy-btn" onClick={() => handleJoinClick(selected)}>JOIN CHALLENGE</button>
+              <button className="deploy-btn" onClick={openModal}>JOIN CHALLENGE</button>
             </div>
 
             {/* --- Mission Briefing Modal --- */}
@@ -130,10 +179,9 @@ const ChallengesPage = () => {
               <section className="rules-section">
                 <h4><CheckCircle size={14} /> MISSION_RULES</h4>
                 <ul>
-                  <li>Maintain GPS signal at all times.</li>
-                  <li>Do not leave the designated expedition zone.</li>
-                  <li>Document key milestones via the X-Plore Logbook.</li>
-                  <li>Strict adherence to local environmental laws.</li>
+                  {
+                    selected?.rules.map((rule)=> <li>{rule}</li>)
+                  }
                 </ul>
               </section>
 
@@ -145,10 +193,7 @@ const ChallengesPage = () => {
 
             <footer className="modal-footer">
               <button className="cancel-btn" onClick={() => setShowModal(false)}>ABORT</button>
-              <button className="confirm-btn" onClick={() => {
-                alert("Mission Accepted! Tracking engaged.");
-                setShowModal(false);
-              }}>
+              <button className="confirm-btn" onClick={handleConfirmJoin}>  
                 I ACCEPT & DEPLOY
               </button>
             </footer>
@@ -169,7 +214,7 @@ const ChallengesPage = () => {
             <div className="map-wrapper">
               <h4 className="radar-label">GEO_COORDINATES</h4>
               <MapContainer
-                key={`${selected?.location?.lat}-${selected?.location?.lng}`} // هذا السطر يضمن إعادة ريندر الخريطة عند تغيير الموقع
+                key={`${selected?.location?.lat}-${selected?.location?.lng}`} 
                 center={[selected?.location?.lat, selected?.location?.lng]}
                 zoom={13}
                 style={{ height: "300px", width: "100%" }}

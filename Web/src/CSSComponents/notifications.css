@@ -1,0 +1,121 @@
+/* Sidebar Container */
+.notif-sidebar-wrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 350px;
+    z-index: 2000;
+    background: #0b1120; /* اللون الأزرق الداكن الفاخر */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.notif-sidebar-wrapper.open {
+    transform: translateX(0);
+}
+
+/* Header */
+.notif-header {
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.notif-header h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0;
+    color: #FB923C; /* لونك البرتقالي المعتمد */
+}
+
+.close-notif-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    color: white;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.close-notif-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: rotate(90deg);
+}
+
+/* Notifications List Area */
+.notif-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+/* Individual Notification Item */
+.notif-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 12px;
+    display: flex;
+    gap: 12px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.notif-item:hover {
+    background: rgba(251, 146, 60, 0.08);
+    border-color: rgba(251, 146, 60, 0.2);
+    transform: translateY(-2px);
+}
+
+.notif-item-icon {
+    background: rgba(251, 146, 60, 0.1);
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FB923C;
+    flex-shrink: 0;
+}
+
+.notif-item-content {
+    flex: 1;
+}
+
+.notif-item-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.notif-item-time {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    display: block;
+}
+
+/* Responsive - Mobile View */
+@media (max-width: 480px) {
+    .notif-sidebar-wrapper {
+        width: 100%; /* تغطية كامل الشاشة في الموبايل */
+    }
+}

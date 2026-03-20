@@ -92,7 +92,7 @@
   .nav-links {
     position: absolute;
     top: 70px;
-    left: -100%; /* مخفية خارج الشاشة */
+    left: -100%; 
     flex-direction: column;
     background-color: #fff;
     width: 100%;
@@ -100,14 +100,19 @@
     transition: 0.4s;
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
     padding: 20px 0;
+    color: #000;
   }
 
   .nav-links.active {
-    left: 0; /* تظهر عند الضغط على الزر */
+    left: 0; 
+  }
+
+  .nav-links a {
+    color: #000;
   }
 
   .desktop-icons {
-    display: none; /* تختفي الأيقونات العلوية */
+    display: none; 
   }
 
   .mobile-icons {
@@ -122,7 +127,6 @@
     display: flex;
   }
 
-  /* تحويل الـ Hamburger إلى X عند الفتح */
   .bar.close:nth-child(1) { transform: translateY(8px) rotate(45deg); }
   .bar.close:nth-child(2) { opacity: 0; }
   .bar.close:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }

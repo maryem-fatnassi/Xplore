@@ -4,36 +4,34 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import RarePlacesPage from "./Pages/RegisteredUsers-UI/RarePlaces-UI_Page/rarePlaces";
 import ChallengesPage from "./Pages/RegisteredUsers-UI/Challenges-UI_Page/ChallengesPage";
 import FeedPage from "./Pages/RegisteredUsers-UI/PostsPage/FeedPage";
-import Login from "./Pages/Login";
+import LoginSignUp from "./Pages/LoginSignUp";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 // import Home from "./Pages/RegisteredUsers-UI/Home-UI/Home";
 
-// function App(){
-
+//  function App(){
 //   return(
 //     <BrowserRouter>
 //       <Routes>
-        {/* <Route path="/" element={<Login/>} />
-        <Route path="/sign" element={<SignUp/>}/> */}
-        {/* <Route path="/" element={<Splash/>} />
-        <Route path="/home" element={<Home/>} />
-      </Routes>
-    </BrowserRouter>
-  )
-}
+//          <Route path="/" element={<LoginSignUp/>} />
+//           <Route path="/challenges" element={<ChallengesPage/>} />
+//       </Routes>
+//     </BrowserRouter>
+//   )
+// }
 
-export default App */}
+// export default App 
 
 
 
 function App() {
   return (
     <div className="App">
-      {/* <Home/> */}
+      <Home/>
       {/* <RarePlacesPage/> */}
       {/* <ChallengesPage/> */}
       {/* <FeedPage/> */}
-      <Login/>
-    </div>
+      {/* <LoginSignUp/>  */}
+     </div>
   );
 }
 

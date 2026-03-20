@@ -11,9 +11,6 @@ const challengeSchema = new mongoose.Schema(
     difficulty: { 
         type: String 
     },
-    usersJoined: { 
-        type: Number 
-    },
     type: {
       type: String,
       enum: ["global", "location"],
@@ -24,6 +21,15 @@ const challengeSchema = new mongoose.Schema(
     },
     equipment : Array,
     duration : String,
+    desc : String,
+    rules : Array,
+    usersJoined: { type: Number, default: 0 }, // للعداد السريع
+  
+  // هنا نقوم بربط المستخدمين بالتحدي
+  joinedUsers: [{ 
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: 'User' // يجب أن يطابق الاسم الذي وضعته في mongoose.model("User", ...)
+  }]
   },
   { timestamps: true },
 );

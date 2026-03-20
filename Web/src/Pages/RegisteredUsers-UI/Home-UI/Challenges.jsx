@@ -66,7 +66,7 @@ useEffect(() => {
               <div className="stats">
                 <span className="user-count">👥 {task.usersJoined} explorers joined</span>
               </div>
-              <button className="join-btn">Accept Challenge</button>
+              {/* <button className="join-btn">Accept Challenge</button> */}
             </div>
           </div>
         ))}
