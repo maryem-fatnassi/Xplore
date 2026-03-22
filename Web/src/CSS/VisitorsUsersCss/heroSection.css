@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;900&display=swap');
+
+.bold-hero {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background-color: #000;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  align-items: center;
+}
+
+/* 1. Interactive Background */
+.bold-bg {
+  position: absolute;
+  inset: 0;
+  background: url('https://i.ytimg.com/vi/d-xcqOXdqfk/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBmCkkC2krAHSOguECEtqZHyf8jJQ') no-repeat center center/cover;
+  transition: transform 0.1s ease-out;
+  z-index: 1;
+}
+
+.bold-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, #001226 30%, transparent 100%);
+  z-index: 2;
+}
+
+/* 2. Flashlight Effect - Follows mouse */
+.mouse-light {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 3;
+  transform: translate(-50%, -50%);
+}
+
+/* 3. Typography (Ultra-Bold) */
+.bold-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  padding: 0 8%;
+}
+
+.main-headline {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(4rem, 15vw, 10rem);
+  line-height: 0.85;
+  margin: 0;
+  letter-spacing: -5px;
+  text-transform: uppercase;
+}
+
+.outline-text {
+  color: transparent;
+  -webkit-text-stroke: 2px #fff;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+
+.outline-text:hover {
+  opacity: 1;
+  color: rgb(249, 163, 4);
+}
+
+/* 4. Footer & CTA */
+.bold-footer {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 40px;
+}
+
+.bold-desc {
+  font-size: 1.2rem;
+  max-width: 450px;
+  line-height: 1.4;
+  color: #cbd5e1;
+}
+
+.register-now-btn {
+  padding: 25px 60px;
+  background-color: #3b82f6; /* Royal Blue */
+  color: #fff;
+  border: none;
+  font-weight: 900;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  transition: all 0.3s;
+}
+
+.register-now-btn:hover {
+  background-color: #fff;
+  color: #001226;
+  transform: scale(1.05) rotate(-1deg);
+}
+
+.live-status {
+  display: block;
+  margin-top: 15px;
+  font-size: 0.8rem;
+  color: #60a5fa;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.corner-decor {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  font-family: monospace;
+  font-size: 0.8rem;
+  opacity: 0.3;
+  z-index: 10;
+}
+
+@media (max-width: 1024px) {
+  .bold-footer { flex-direction: column; align-items: flex-start; }
+}

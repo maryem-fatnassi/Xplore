@@ -45,29 +45,41 @@ const FeedPage = () => {
     return date.toLocaleDateString();
   };
 
-  const handlePostSubmit = async () => {
-    if (!newPostContent.trim()) return;
+const [selectedFile, setSelectedFile] = useState(null);
 
-    const postData = {
-      userId: userId,
-      description: newPostContent,
-      location: "Global Station", // يمكنك جلبها من API خرائط لاحقاً
-      mediaType: "text",
-    };
+// دالة لاختيار الملف من الجهاز
+const handleFileChange = (e) => {
+  setSelectedFile(e.target.files[0]);
+};
 
-    try {
-      const response = await fetch("http://localhost:5000/api/posts/create", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(postData),
-      });
-      const savedPost = await response.json();
-      setPosts([savedPost, ...posts]); // تحديث القائمة فوراً
-      setNewPostContent("");
-    } catch (error) {
-      alert("Failed to publish log");
-    }
-  };
+const handlePostSubmit = async () => {
+  if (!newPostContent.trim() && !selectedFile) return;
+
+  // استخدام FormData بدلاً من JSON
+  const formData = new FormData();
+  formData.append("userId", userId);
+  formData.append("description", newPostContent);
+  formData.append("location", "Crystal Caves");
+  if (selectedFile) {
+    formData.append("media", selectedFile);
+  }
+
+  try {
+    const response = await fetch("http://localhost:5000/api/posts/create", {
+      method: "POST",
+      // ملاحظة: لا تضع Headers للـ Content-Type، المتصفح سيفعل ذلك تلقائياً مع FormData
+      body: formData 
+    });
+    
+    const savedPost = await response.json();
+    setPosts([savedPost, ...posts]);
+    setNewPostContent('');
+    setSelectedFile(null);
+  }catch (error) {
+  console.error("Full Error Details:", error); // هذا سيخبرك إذا كان الخطأ 404 أو 500 أو Network Error
+  alert("Upload Failed: " + error.message);
+}
+};
 
   // 4. الإعجاب (Like)
   const handleLikeToggle = async (postId) => {
@@ -153,14 +165,19 @@ const FeedPage = () => {
                 />
               </div>
               <div className="create-actions">
-                <div className="upload-options">
-                  <button className="media-btn">
-                    <Image size={18} /> Photo
-                  </button>
-                  <button className="media-btn">
-                    <Film size={18} /> Video
-                  </button>
-                </div>
+<div className="upload-options">
+  <input 
+    type="file" 
+    id="file-upload" 
+    style={{ display: 'none' }} 
+    onChange={handleFileChange} 
+    accept="image/*,video/*"
+  />
+  <label htmlFor="file-upload" className="media-btn">
+    <Image size={18}/> Photo/Video
+  </label>
+  {selectedFile && <span className="file-name">{selectedFile.name}</span>}
+</div>
                 <button className="publish-btn" onClick={handlePostSubmit}>
                   <PlusCircle size={18} /> PUBLISH LOG
                 </button>
