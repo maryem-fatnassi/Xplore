@@ -152,6 +152,8 @@
   padding: 10px 5%;
   font-size: 0.7rem;
   font-weight: bold;
+  display: flex;
+  justify-content: space-between;
 }
 
 @keyframes rotateCompass {

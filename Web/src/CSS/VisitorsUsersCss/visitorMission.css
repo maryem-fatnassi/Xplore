@@ -1,0 +1,113 @@
+.mission-section {
+  padding: 120px 8%;
+  background-color: #000a1a; /* أغمق درجة من الأزرق الملكي */
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.mission-container {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.mission-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.mission-tag {
+  color: #3b82f6;
+  font-family: monospace;
+  letter-spacing: 5px;
+  font-size: 0.9rem;
+}
+
+.mission-main-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900;
+  margin: 15px 0;
+  text-transform: uppercase;
+}
+
+.mission-underline {
+  width: 80px;
+  height: 4px;
+  background: #3b82f6;
+  margin: 0 auto;
+}
+
+/* Mission Grid Layout */
+.mission-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px;
+}
+
+.mission-pillar {
+  position: relative;
+  padding: 50px 40px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+  cursor: default;
+}
+
+.mission-pillar:hover {
+  transform: translateY(-15px);
+  background: rgba(59, 130, 246, 0.05);
+  border-color: #3b82f6;
+}
+
+/* Pillar Content */
+.pillar-icon {
+  font-size: 3rem;
+  font-weight: 900;
+  color: rgba(59, 130, 246, 0.2);
+  margin-bottom: 20px;
+  font-family: 'Archivo Black', sans-serif;
+}
+
+.mission-pillar h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.mission-pillar p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #94a3b8;
+}
+
+/* The Hover Glow Effect */
+.pillar-glow {
+  position: absolute;
+  bottom: -50px;
+  right: -50px;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
+  filter: blur(30px);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.mission-pillar:hover .pillar-glow {
+  opacity: 1;
+}
+
+/* Making the middle one stand out by default */
+.active-pillar {
+  border-color: rgba(59, 130, 246, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 768px) {
+  .mission-section { padding: 80px 5%; }
+  .mission-grid { gap: 20px; }
+}

@@ -40,7 +40,8 @@ const Footer = () => {
       </div>
 
       <div className="footer-legal-strip">
-        <div className="terminal-text">TERMINAL_ID: 00-XPL-2026 // NO BOUNDARIES FOUND</div>
+        <div className="terminal-text">© 2026 UNMAPPED. ALL RIGHTS RESERVED.</div>
+        <div className="terminal-text">xPloreWebsite@gmail.com</div>
       </div>
     </footer>
   );
