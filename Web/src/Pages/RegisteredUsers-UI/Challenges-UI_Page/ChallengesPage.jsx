@@ -8,7 +8,7 @@ import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import { fetchAllChallenges } from "../../../Services/challengesService/allChallenges";
 import Navbar from "../../../Components/NavSection";
 import Footer from "../../../Components/Footer";
-import { ShieldAlert, CheckCircle, X, Info, Zap } from 'lucide-react'; 
+import { ShieldAlert, CheckCircle, X, Info, Zap } from "lucide-react";
 import { joinChallengeService } from "../../../Services/challengesService/joinChallenge";
 
 const ChallengesPage = () => {
@@ -22,7 +22,7 @@ const ChallengesPage = () => {
   const [selected, setSelected] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
-const getLoggedUser = () => {
+  const getLoggedUser = () => {
     const saved = localStorage.getItem("user");
     if (!saved || saved === "undefined") return null;
     try {
@@ -33,42 +33,57 @@ const getLoggedUser = () => {
   };
 
   const userData = getLoggedUser();
-  const userId = userData?.id; // هذا هو الـ ID الذي أرسله السيرفر المعدل
-  console.log(userId)
+  const userId = userData?.id;
+  console.log(userId);
 
-  const openModal = ()=>{
+  const openModal = () => {
     setShowModal(true);
-  }
-  
-const handleConfirmJoin = async () => {
-  if (!userId) {
-    alert("خطأ: يجب تسجيل الدخول أولاً للانضمام للتحدي!");
-    return;
-  }
+  };
 
+  const handleConfirmJoin = async () => {
+    if (!userId) {
+      alert("Error: Please login first.");
+      return;
+    }
 
-  try {
-    // 1. استدعاء الـ Service (التي تستخدم fetch)
-    // نمرر id التحدي المختار و id المستخدم الحالي
-// جرب تغيير السطر في handleConfirmJoin إلى:
-await joinChallengeService(selected._id || selected.id, userId);
-    // 2. تحديث الواجهة الأمامية (Frontend) لزيادة العداد فوراً
-    const updatedList = challengesData.map((ch) => {
-      if (ch.id === selected.id) {
-        return { ...ch, usersJoined: (ch.usersJoined || 0) + 1 };
-      }
-      return ch;
-    });
+    // تحديد الـ ID الصحيح (سواء كان id أو _id)
+    const currentChallengeId = selected?._id || selected?.id;
 
-    setChallengesData(updatedList);
-    setSelected({ ...selected, usersJoined: (selected.usersJoined || 0) + 1 });
+    try {
+      await joinChallengeService(currentChallengeId, userId);
 
-    alert(`Mission Accepted! Welcome to the team.`);
-    setShowModal(false);
-  } catch (error) {
-    alert(error.message);
-  }
-};
+      // 1. تحديث القائمة الكبيرة (challengesData)
+      setChallengesData((prevData) =>
+        prevData.map((ch) => {
+          const chId = ch._id || ch.id;
+          if (chId === currentChallengeId) {
+            return {
+              ...ch,
+              joinedUsers: ch.joinedUsers
+                ? [...ch.joinedUsers, userId]
+                : [userId],
+              usersJoined: (ch.usersJoined || 0) + 1,
+            };
+          }
+          return ch;
+        }),
+      );
+
+      // 2. تحديث التحدي المختار (selected)
+      setSelected((prevSelected) => ({
+        ...prevSelected,
+        joinedUsers: prevSelected.joinedUsers
+          ? [...prevSelected.joinedUsers, userId]
+          : [userId],
+        usersJoined: (prevSelected.usersJoined || 0) + 1,
+      }));
+
+      alert("Mission Accepted! Deploying...");
+      setShowModal(false);
+    } catch (error) {
+      alert("Failed to join: " + error.message);
+    }
+  };
 
   useEffect(() => {
     fetchAllChallenges(setChallengesData);
@@ -90,13 +105,14 @@ await joinChallengeService(selected._id || selected.id, userId);
     const map = useMap();
     map.setView(coords);
     setTimeout(() => {
-      map.invalidateSize(); 
+      map.invalidateSize();
     }, 100);
     return null;
   }
 
-  const filteredChallenges = challengesData.filter((ch)=>ch.difficulty.toLowerCase().includes(inputValue.toLowerCase()));
-
+  const filteredChallenges = challengesData.filter((ch) =>
+    ch.difficulty.toLowerCase().includes(inputValue.toLowerCase()),
+  );
   return (
     <div>
       <Navbar />
@@ -104,9 +120,13 @@ await joinChallengeService(selected._id || selected.id, userId);
         {/* Side bar*/}
         <div className="mission-list">
           <div className="search-container">
-              <i class="fa-solid fa-magnifying-glass"></i>
-              <input placeholder="Search by Difficulty Levels..." type="text" onChange={(e)=>setinputValue(e.target.value)}/>
-            </div>
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input
+              placeholder="Search by Difficulty Levels..."
+              type="text"
+              onChange={(e) => setinputValue(e.target.value)}
+            />
+          </div>
           <h3 className="list-label">ACTIVE_MISSIONS</h3>
           {filteredChallenges.map((ch) => (
             <div
@@ -128,7 +148,10 @@ await joinChallengeService(selected._id || selected.id, userId);
         {/* The Briefing*/}
         <div className="mission-briefing">
           <div className="challenge-header">
-            <p><span>Challenge Difficulty Levels :</span> Easy / Medium / Hard / Extreme</p>
+            <p>
+              <span>Challenge Difficulty Levels :</span> Easy / Medium / Hard /
+              Extreme
+            </p>
             <div className="stats-grid">
               <div className="stat">
                 <span>JOINED:</span> <strong>{selected?.usersJoined}</strong>
@@ -153,53 +176,92 @@ await joinChallengeService(selected._id || selected.id, userId);
                   <li key={i}> {item}</li>
                 ))}
               </ul>
-              <button className="deploy-btn" onClick={openModal}>JOIN CHALLENGE</button>
+              <button
+                // نتحقق من الانضمام مباشرة داخل الكلاس
+                className={`deploy-btn ${selected?.joinedUsers?.includes(userId) ? "joined-mode" : ""}`}
+                // نمنع الضغط إذا كان المستخدم منضماً لهذا التحدي بالذات
+                onClick={
+                  selected?.joinedUsers?.includes(userId) ? null : openModal
+                }
+                disabled={selected?.joinedUsers?.includes(userId)}
+              >
+                {selected?.joinedUsers?.includes(userId) ? (
+                  <>
+                    {" "}
+                    <CheckCircle
+                      size={18}
+                      style={{ marginRight: "8px" }}
+                    />{" "}
+                    MISSION_JOINED{" "}
+                  </>
+                ) : (
+                  "JOIN CHALLENGE"
+                )}
+              </button>
             </div>
 
             {/* --- Mission Briefing Modal --- */}
-      {showModal && (
-        <div className="modal-overlay">
-          <div className="mission-modal-glass">
-            <header className="modal-header">
-              <div className="header-title">
-                <ShieldAlert size={20} color="#00aaff" />
-                <span>MISSION_BRIEFING: {selected?.title}</span>
+            {showModal && (
+              <div className="modal-overlay">
+                <div className="mission-modal-glass">
+                  <header className="modal-header">
+                    <div className="header-title">
+                      <ShieldAlert size={20} color="#00aaff" />
+                      <span>MISSION_BRIEFING: {selected?.title}</span>
+                    </div>
+                    <button
+                      className="close-modal"
+                      onClick={() => setShowModal(false)}
+                    >
+                      <X size={20} />
+                    </button>
+                  </header>
+
+                  <div className="modal-body">
+                    <section className="brief-section">
+                      <h4>
+                        <Info size={14} /> DESCRIPTION
+                      </h4>
+                      <p>
+                        {selected?.desc ||
+                          "Prepare for a high-stakes expedition into uncharted territory. Mental and physical resilience is required."}
+                      </p>
+                    </section>
+
+                    <section className="rules-section">
+                      <h4>
+                        <CheckCircle size={14} /> MISSION_RULES
+                      </h4>
+                      <ul>
+                        {selected?.rules.map((rule) => (
+                          <li>{rule}</li>
+                        ))}
+                      </ul>
+                    </section>
+
+                    <section className="warning-box">
+                      <Zap size={18} />
+                      <p>
+                        BY PROCEEDING, YOU ACCEPT FULL RESPONSIBILITY FOR YOUR
+                        SAFETY DURING THIS CHALLENGE.
+                      </p>
+                    </section>
+                  </div>
+
+                  <footer className="modal-footer">
+                    <button
+                      className="cancel-btn"
+                      onClick={() => setShowModal(false)}
+                    >
+                      ABORT
+                    </button>
+                    <button className="confirm-btn" onClick={handleConfirmJoin}>
+                      I ACCEPT & DEPLOY
+                    </button>
+                  </footer>
+                </div>
               </div>
-              <button className="close-modal" onClick={() => setShowModal(false)}>
-                <X size={20} />
-              </button>
-            </header>
-
-            <div className="modal-body">
-              <section className="brief-section">
-                <h4><Info size={14} /> DESCRIPTION</h4>
-                <p>{selected?.desc || "Prepare for a high-stakes expedition into uncharted territory. Mental and physical resilience is required."}</p>
-              </section>
-
-              <section className="rules-section">
-                <h4><CheckCircle size={14} /> MISSION_RULES</h4>
-                <ul>
-                  {
-                    selected?.rules.map((rule)=> <li>{rule}</li>)
-                  }
-                </ul>
-              </section>
-
-              <section className="warning-box">
-                <Zap size={18} />
-                <p>BY PROCEEDING, YOU ACCEPT FULL RESPONSIBILITY FOR YOUR SAFETY DURING THIS CHALLENGE.</p>
-              </section>
-            </div>
-
-            <footer className="modal-footer">
-              <button className="cancel-btn" onClick={() => setShowModal(false)}>ABORT</button>
-              <button className="confirm-btn" onClick={handleConfirmJoin}>  
-                I ACCEPT & DEPLOY
-              </button>
-            </footer>
-          </div>
-        </div>
-      )}
+            )}
 
             <div className="image-frame">
               <img src={selected?.image} alt="mission" />
@@ -214,7 +276,7 @@ await joinChallengeService(selected._id || selected.id, userId);
             <div className="map-wrapper">
               <h4 className="radar-label">GEO_COORDINATES</h4>
               <MapContainer
-                key={`${selected?.location?.lat}-${selected?.location?.lng}`} 
+                key={`${selected?.location?.lat}-${selected?.location?.lng}`}
                 center={[selected?.location?.lat, selected?.location?.lng]}
                 zoom={13}
                 style={{ height: "300px", width: "100%" }}
@@ -246,7 +308,7 @@ await joinChallengeService(selected._id || selected.id, userId);
           )}
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

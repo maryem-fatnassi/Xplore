@@ -35,7 +35,7 @@ console.log(posts)
 
             {/* الصورة */}
             <div className="post-media-box">
-              <img src={post.content} alt={post.location} />
+              <img src={post.media} alt={post.location} />
               <div className="like-badge">❤️ {post.likes.length}</div>
             </div>
 

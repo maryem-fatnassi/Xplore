@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../CSSComponents/navSection.css';
 import ProfileSidebar from './ProfileSidebar';
 import Notifications from './Notifications';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -18,12 +19,11 @@ const Navbar = () => {
         <div className="logo">X-Plore</div>
 
         <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#rare-places">Rare places</a></li>
-          <li><a href="#challenges">Challenges</a></li>
-          <li><a href="#rare-places">Posts</a></li>
-          <li><a href="#contact">Contact</a></li>
-          
+          <li><a href="/home">Home</a></li>
+          <li><a href="/rarePlaces"><Link to={"/rarePlaces"}></Link> Rare places</a></li>
+          <li><a href="/challenges">Challenges</a></li>
+          <li><a href="/posts">Posts</a></li>
+                    
           <li className="mobile-icons">
             <span className="icon"><i class="fa-solid fa-bell"></i></span>
             <span className="icon"><i class="fa-solid fa-user"></i></span>
@@ -31,7 +31,7 @@ const Navbar = () => {
         </ul>
 
         <div className="desktop-icons">
-          <button className="icon-btn" title="Notifications" onClick={() => setIsNotifOpen(true)}><i class="fa-solid fa-bell"></i></button>
+          {/* <button className="icon-btn" title="Notifications" onClick={() => setIsNotifOpen(true)}><i class="fa-solid fa-bell"></i></button> */}
           <button className="icon-btn" title="Profile" onClick={() => setIsSidebarOpen(true)}><i class="fa-solid fa-user"></i></button>
         </div>
 

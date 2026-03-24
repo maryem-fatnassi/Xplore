@@ -12,7 +12,7 @@ userRouter.post("/login", async (req, res) => {
     }
     res.status(200).json({ 
       user: {
-        id: user._id, // تأكد هل هو id أم _id حسب الموديل عندك
+        id: user._id, 
         userName: user.userName,
         email: user.email
       }

@@ -118,3 +118,12 @@
     padding: 8px;
     cursor: pointer;
 }
+
+@media(max-width:995.98px){
+  .main-title {
+    font-size: 3rem;
+  }
+  .description {
+    display: none;
+  }
+}

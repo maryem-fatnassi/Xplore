@@ -16,38 +16,41 @@ import VisitorShowcase from "./Pages/VisitorsUsers-UI/VisitorShowcase";
 import Final from "./Pages/VisitorsUsers-UI/Final";
 // import Home from "./Pages/RegisteredUsers-UI/Home-UI/Home";
 
-//  function App(){
-//   return(
-//     <BrowserRouter>
-//       <Routes>
-//          <Route path="/" element={<LoginSignUp/>} />
-//           <Route path="/challenges" element={<FeedPage/>} />
-//       </Routes>
-//     </BrowserRouter>
-//   )
-// }
+ function App(){
+  return(
+    <BrowserRouter>
+      <Routes>
+         <Route path="/" element={<LoginSignUp/>} />
+         <Route path="/home" element={<Home/>}/>
+          <Route path="rarePlaces" element={<RarePlacesPage/>}/>
+          <Route path="challenges" element={<ChallengesPage/>}/>
+          <Route path="/posts" element={<FeedPage/>}/>
+      </Routes>
+    </BrowserRouter>
+  )
+}
 
 // export default App 
 
 
 
-function App() {
-  return (
-    <div className="App">
-      <Navbar/>
-      {/* <Home/> */}
-      {/* <RarePlacesPage/> */}
+// function App() {
+//   return (
+//     <div className="App">
+      {/* <Navbar/> */}
+      {/* <Home/>
+      <RarePlacesPage/> */}
       {/* <ChallengesPage/> */}
-      {/* <FeedPage/> */}
-      {/* <LoginSignUp/>  */}
+      {/* <FeedPage/>
+      <LoginSignUp/> 
       <HeroSection/>
-      {/* <VisitorTeaser/> */}
+      <VisitorTeaser/>
       <VisitorMission/>
       <VisitorShowcase/>
       <Final/>
-      <Footer/>
-     </div>
-  );
-}
+      <Footer/> */}
+//      </div>
+//   );
+// }
 
 export default App; 

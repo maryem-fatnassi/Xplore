@@ -5,9 +5,6 @@ const upload = require("../../Middleware/upload");
 
 postRouter.post("/create", upload.single("media"), async (req, res) => {
   try {
-    console.log("File Object:", req.file); // إذا ظهر undefined هنا فالمشكلة في الربط
-    console.log("Form Body:", req.body);
-
     const { userId, description, location } = req.body;
 
     // فحص إضافي: إذا لم يصل ملف وكان الهدف رفع ميديا

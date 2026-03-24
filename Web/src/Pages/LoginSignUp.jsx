@@ -44,7 +44,7 @@ e.preventDefault();
       localStorage.setItem("user", JSON.stringify(response.user));
       
       alert("Login Successful!");
-      navigate("/challenges");
+      navigate("/home");
     } else {
       alert("Login failed: User data not found in response");
     }
@@ -59,6 +59,7 @@ e.preventDefault();
       console.log("Sending Sign Up Data:", signUpPage);
       await signUp(signUpPage);
       alert("Account Created!");
+      navigate("/home");
     } catch (error) {
       console.log(error);
       alert("Sign Up Failed");

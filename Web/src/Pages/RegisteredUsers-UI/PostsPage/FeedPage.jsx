@@ -294,7 +294,7 @@ const handlePostSubmit = async () => {
           {/* --- RIGHT SIDE: Expedition Sidebar --- */}
           <aside className="expedition-sidebar">
             {/* Section 1: Top Explorers */}
-            <div className="sidebar-widget luxury-glass">
+            {/* <div className="sidebar-widget luxury-glass">
               <h3 className="widget-title">
                 <Award size={18} color="#00aaff" /> TOP_EXPLORERS
               </h3>
@@ -315,7 +315,7 @@ const handlePostSubmit = async () => {
                   </div>
                 ))}
               </div>
-            </div>
+            </div> */}
 
             {/* Section 2: Trending Destinations */}
             <div className="sidebar-widget luxury-glass">

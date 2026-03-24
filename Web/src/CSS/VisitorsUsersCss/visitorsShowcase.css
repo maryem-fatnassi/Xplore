@@ -142,3 +142,12 @@
   color: #000;
   box-shadow: 0 0 30px #3b82f6;
 }
+
+@media(max-width: 768px) {
+  .impact-container {
+    flex-direction: column;
+  };
+  .impact-preview-window {
+    width: 100%;
+  }
+}

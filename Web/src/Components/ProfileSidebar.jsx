@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { use } from 'react';
 import styles from '../CSSComponents/profile.module.css';
 import { User, X, MapPin, Compass, Trophy, Settings, LogOut, Image as ImageIcon } from 'lucide-react';
 
@@ -6,6 +6,8 @@ import { User, X, MapPin, Compass, Trophy, Settings, LogOut, Image as ImageIcon 
 
 // const defaultAvatar = "https://via.placeholder.com/110";
 const ProfileSidebar = ({ isOpen, onClose }) => {
+  const saved = localStorage.getItem("user");
+  const user =  JSON.parse(saved)
   return (
 <>
       {/* Background Overlay with higher contrast */}
@@ -29,17 +31,17 @@ const ProfileSidebar = ({ isOpen, onClose }) => {
         <div className={styles.userSection}>
           {/* <div className={styles.avatarContainer}>
             <img 
-              src={defaultAvatar} // استبدل برابط صورة المستخدم الحقيقي
+              src={defaultAvatar} 
               alt="User avatar" 
               className={styles.avatarImage} 
             />
           </div> */}
-          <h3 className={styles.userName}>Alex Rivers</h3> {/* الاسم المذكور في صورتك */}
-          <p className={styles.userEmail}>alex.rivers@explorer.com</p>
+          <h3 className={styles.userName}>{user.userName}</h3> 
+          <p className={styles.userEmail}>{user.email}</p>
         </div>
 
         {/* Added Stats Bar - Vital for Exploration Apps */}
-        <div className={styles.statsBar}>
+        {/* <div className={styles.statsBar}>
           <div className={styles.statItem}>
             <span className={styles.statCount}>42</span>
             <span className={styles.statLabel}>Expeditions</span>
@@ -52,14 +54,14 @@ const ProfileSidebar = ({ isOpen, onClose }) => {
             <span className={styles.statCount}>850</span>
             <span className={styles.statLabel}>XP Points</span>
           </div>
-        </div>
+        </div> */}
 
         {/* Refined Navigation Links */}
         <nav className={styles.navLinks}>
           <NavigationItem icon={<User size={18}/>} text="My Profile" />
           <NavigationItem icon={<Compass size={18}/>} text="My Expeditions" />
           <NavigationItem icon={<Trophy size={18}/>} text="Challenges" />
-          <NavigationItem icon={<Settings size={18}/>} text="Account Settings" />
+          {/* <NavigationItem icon={<Settings size={18}/>} text="Account Settings" /> */}
           
           <div style={{ marginTop: '20px' }}>
             <NavigationItem 

@@ -8,7 +8,7 @@
   overflow: hidden;
 }
 
-/* القائمة اليسرى */
+/* left side*/
 .mission-list {
   border-right: 1px solid #222;
   padding: 40px 20px;
@@ -98,7 +98,6 @@
   padding-left: 10px;
 }
 
-/* المحتوى الرئيسي */
 .mission-briefing {
   padding: 28px 20px;
   overflow-y: auto;
@@ -178,7 +177,7 @@
   border: none;
   font-weight: bold;
   cursor: pointer;
-  clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%); /* شكل مائل احترافي */
+  clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%); 
 }
 
 .deploy-btn:hover {
@@ -205,7 +204,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 5, 15, 0.85); /* تظليل أزرق داكن */
+  background: rgba(0, 5, 15, 0.85); 
   backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
@@ -356,7 +355,7 @@
   }
 }
 
-/* الرادار والخريطة */
+/* map*/
 .location-radar {
   background: #080808;
   border-left: 1px solid #222;
@@ -367,7 +366,7 @@
   height: 300px;
   width: 100%;
   filter: grayscale(1) invert(1) contrast(1.2);
-} /* جعل الخريطة داكنة */
+} 
 
 .global-status {
   text-align: center;
@@ -381,21 +380,23 @@
 }
 
 .map-wrapper {
-  height: 350px; /* أو أي رقم ثابت */
+  height: 350px; 
   width: 100%;
   position: relative;
   border: 1px solid #333;
+  z-index: 0;
 }
 
-/* هذا السطر ضروري جداً لـ Leaflet */
+/* important for Leaflet */
 .leaflet-container {
   width: 100%;
   height: 100% !important;
 }
 
-/* .header-text h1{
-  color:#666;
-} */
+.challenges, .mission-list, .mission-briefing {
+  scrollbar-width: thin;
+  scrollbar-color: #2563eb #050505;
+}
 
 @keyframes rotateGlobe {
   from {
@@ -403,5 +404,83 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+.deploy-btn.joined-mode {
+  background-color: #1e3a8a !important; 
+  color: #fff;
+  border: 1px solid #3b82f6;
+  cursor: default;
+  opacity: 0.9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 10px rgba(0, 170, 255, 0.2);
+  animation: pulse-blue 2s infinite;
+}
+
+/* .joined-mode {
+  animation: pulse-blue 2s infinite;
+} */
+
+@keyframes pulse-blue {
+  0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+}
+
+/* --- RESPONSIVE ADJUSTMENTS --- */
+
+@media (max-width: 1100px) {
+  .challenges {
+    grid-template-columns: 250px 1fr; /* إلغاء العمود الثالث (الرادار) في الشاشات المتوسطة */
+    height: auto;
+    overflow-y: auto;
+  }
+  .location-radar {
+    grid-column: span 2;
+    border-left: none;
+    border-top: 1px solid #222;
+  }
+}
+
+@media (max-width: 768px) {
+  .challenges {
+    display: flex;
+    flex-direction: column; /* تحويل الشبكة إلى عمود واحد للموبايل */
+    height: auto;
+    overflow-y: visible;
+  }
+
+  .mission-list {
+    height: 300px; /* تحديد طول قائمة المهمات على الموبايل */
+    border-right: none;
+    border-bottom: 1px solid #222;
+  }
+
+  .header-text h1 {
+    font-size: 2rem; /* تصغير الخط قليلاً ليناسب الموبايل */
+  }
+
+  .briefing-content {
+    grid-template-columns: 1fr; /* جعل المعدات والصورة تحت بعضهما */
+    gap: 20px;
+  }
+
+  .mission-briefing .challenge-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .stats-grid {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .mission-modal-glass {
+    width: 95%; /* جعل المودال يأخذ عرض الشاشة على الموبايل */
+    margin: 10px;
   }
 }
