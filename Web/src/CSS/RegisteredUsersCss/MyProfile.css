@@ -1,0 +1,43 @@
+body{
+    background-color: #02040a;
+}
+
+#my_profile_container .page-content{
+    background-color: #02040a;
+    padding: 20px 50px;
+}
+
+.form-container.profile-form h2{
+    color: #ffaa00;
+    height: 100%;
+}
+
+.profile-form .admin-button:not(.active){
+    color: #ffaa00;
+}
+
+.profile-form .active-button:not(.active){
+    color: white
+}
+
+.profile-form .section{
+    background-color: #0a0e17;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(100, 200, 255, 0.05);
+    border-radius: 20px;
+}
+.profile-form .section:hover{
+    border-color: rgba(0, 170, 255, 0.2);
+}
+.profile-form .input-field{
+    background-color: transparent !important;
+    color: white;
+}
+
+.form-container.profile-form label{
+    color: #ffaa00;
+}
+
+.form-container.profile-form .avatar-title{
+    color: white;
+}

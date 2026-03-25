@@ -27,4 +27,13 @@ app.use("/api/posts",require("./Routes/Posts/getPosts"));
 app.use("/api/posts",require("./Routes/Posts/likes"));
 app.use("/api/posts",require("./Routes/Posts/comments"))
 
+//** Admin Users **/
+app.use("/api/admin/users",require("./Routes/Admin/Users"));
+
+//** Admin Posts **/
+app.use("/api/admin/posts",require("./Routes/Admin/Posts"));
+
+//** Admin Challengess **/
+app.use("/api/admin/challenges",require("./Routes/Admin/Challenges"));
+
 app.listen(process.env.PORT, () => console.log("Server is running"));

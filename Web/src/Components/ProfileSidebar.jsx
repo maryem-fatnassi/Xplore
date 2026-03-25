@@ -1,6 +1,7 @@
 import React, { use } from 'react';
 import styles from '../CSSComponents/profile.module.css';
 import { User, X, MapPin, Compass, Trophy, Settings, LogOut, Image as ImageIcon } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -8,6 +9,8 @@ import { User, X, MapPin, Compass, Trophy, Settings, LogOut, Image as ImageIcon 
 const ProfileSidebar = ({ isOpen, onClose }) => {
   const saved = localStorage.getItem("user");
   const user =  JSON.parse(saved)
+  console.log(saved)
+  const navigate = useNavigate;
   return (
 <>
       {/* Background Overlay with higher contrast */}
@@ -58,7 +61,7 @@ const ProfileSidebar = ({ isOpen, onClose }) => {
 
         {/* Refined Navigation Links */}
         <nav className={styles.navLinks}>
-          <NavigationItem icon={<User size={18}/>} text="My Profile" />
+          <NavigationItem icon={<User size={18}/>} text="My Profile" onClick={() => navigate("/my-profile")}/>
           <NavigationItem icon={<Compass size={18}/>} text="My Expeditions" />
           <NavigationItem icon={<Trophy size={18}/>} text="Challenges" />
           {/* <NavigationItem icon={<Settings size={18}/>} text="Account Settings" /> */}

@@ -42,9 +42,13 @@ e.preventDefault();
     if (response && response.user) {
       // نخزن بيانات المستخدم فقط في الـ localStorage
       localStorage.setItem("user", JSON.stringify(response.user));
-      
-      alert("Login Successful!");
-      navigate("/home");
+      alert("Login Successful! " + response.user.is_admin ? 'admin' : 'user' );
+      if(response.user.is_admin){
+        navigate("/admin");
+      }
+      else{
+        navigate("/home");
+      }
     } else {
       alert("Login failed: User data not found in response");
     }
@@ -57,12 +61,23 @@ e.preventDefault();
     e.preventDefault();
     try {
       console.log("Sending Sign Up Data:", signUpPage);
-      await signUp(signUpPage);
-      alert("Account Created!");
-      navigate("/home");
+      const response =  await signUp(signUpPage);
+
+      if(response && response.user){
+        localStorage.setItem("user", JSON.stringify(response.user));
+        alert("Account Created!");
+        navigate("/home");
+      }
+      else {
+      alert("signup failed: User data not found in response");
+    }
     } catch (error) {
-      console.log(error);
-      alert("Sign Up Failed");
+      if(error.response){
+        alert(error.response.data.message);
+      }
+      else{
+        alert("server error")
+      }
     }
   };
   return (

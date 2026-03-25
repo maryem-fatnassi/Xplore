@@ -1,7 +1,9 @@
 import React from 'react';
 import '../../CSS/VisitorsUsersCss/final.css';
+import { useNavigate } from 'react-router-dom';
 
 const Final = () => {
+  const navigate = useNavigate();
   return (
     <footer className="final-cta-section">
       <div className="cta-grid-bg"></div>
@@ -16,7 +18,7 @@ const Final = () => {
         </p>
         
         <div className="cta-input-group">
-          <button className="cta-final-btn">
+          <button className="cta-final-btn" onClick={()=> navigate("/login")}>
             CREATE YOUR FREE PROFILE
             <span className="btn-glow"></span>
           </button>

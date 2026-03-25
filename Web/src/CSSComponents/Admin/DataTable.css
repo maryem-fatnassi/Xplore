@@ -1,0 +1,56 @@
+.add-user-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  background-color: var(--primary);
+  color: white;
+  border: none;
+
+  padding: 12px 20px;
+  border-radius: var(--radius-md);
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.add-user-btn i {
+  font-size: 16px;
+}
+
+.add-user-btn:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+.add-user-btn:active {
+  transform: scale(0.97);
+}
+
+
+.rdt_TableHead {
+  font-weight: bold;
+  background: linear-gradient(90deg, #4ade80, #16a34a);
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #15803d;
+}
+
+.rdt_TableCol {
+  padding: 12px 8px;
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.rdt_TableCol:last-child {
+  border-right: none;
+}
+
+.rdt_TableHeadRow {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}

@@ -85,7 +85,11 @@
   margin-top: 20px;
 }
 
-.nav-item {
+.nav-item{
+  list-style: none;
+}
+
+.nav-item a{
   text-decoration: none;
   color: #94a3b8;
   font-size: 0.8rem;
@@ -95,23 +99,23 @@
   transition: 0.3s;
 }
 
-.nav-item::before {
+.nav-item a::before {
   content: '[';
   opacity: 0;
   transition: 0.3s;
 }
 
-.nav-item::after {
+.nav-item a::after {
   content: ']';
   opacity: 0;
   transition: 0.3s;
 }
 
-.nav-item:hover {
+.nav-item a:hover {
   color: #2563eb;
 }
 
-.nav-item:hover::before, .nav-item:hover::after {
+.nav-item a:hover::before, .nav-item a:hover::after {
   opacity: 1;
 }
 

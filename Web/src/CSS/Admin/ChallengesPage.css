@@ -1,0 +1,15 @@
+.challenges-table-container .media-img{
+    height: 80px;
+    margin: 3px 0;
+}
+
+.challenges-table-container .description-cell {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+
+  max-width: 200px;
+}

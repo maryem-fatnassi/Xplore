@@ -1,0 +1,224 @@
+/* 📦 Sidebar (DEFAULT = COLLAPSED) */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  /*width: 50px;*/                /* 👈 collapsed */
+  height: 100vh;
+  background: #0a1a33;
+  color: white;
+  padding: 20px;
+  transition: width 0.3s ease;
+  z-index: 1000;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ✅ OPEN (active = expanded) */
+.sidebar.active {
+  width: 250px;
+  align-items: stretch;
+}
+
+/* 🔥 Logo */
+
+.sidebar.active .logo {
+  display: block;
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+}
+
+/* 📋 Menu */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+/* Items */
+.sidebar ul li .nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 12px 0;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  color: white;
+  width: 44px;
+  text-decoration: none;
+}
+
+.sidebar.active ul li .nav-link {
+  justify-content: flex-start;
+  padding: 12px;
+  width: auto;
+}
+
+/* Hover */
+.sidebar ul li .nav-link:hover {
+  background: rgba(37, 99, 236, 0.3);
+}
+
+/* Active item */
+.sidebar ul li .nav-link.active {
+  background: #2563ec;
+}
+
+/* Icons */
+.sidebar ul li i {
+  width: 30px;
+  min-width: 30px;
+  text-align: center;
+  font-size: 20px;
+}
+
+/* Text */
+.sidebar ul li span {
+  display: none;
+  font-size: 18px;
+  white-space: nowrap;
+}
+
+.sidebar.active ul li span {
+  display: inline;
+}
+
+
+
+/* 📱 Mobile */
+@media (max-width: 768px) {
+  .sidebar {
+    left: -250px;
+  }
+
+  .sidebar.active {
+    left: 0;
+    width: 250px;
+  }
+}
+
+/* Separator */
+.sidebar .line {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Toggle button */ 
+.menu-icon { 
+  position: absolute; 
+  top: 50%; 
+  right: 0; 
+  font-size: 16px; 
+  cursor: pointer; 
+  background: white; 
+  color: #2563ec; 
+  padding: 14px; 
+  border-radius: 50%; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  transition: all 0.3s ease; 
+  transform: translate(calc(20px + 100%),-50%); 
+  z-index: 1001; 
+  height: 10px; 
+  width: 10px; 
+  border: 2px solid #0a1a33; 
+} 
+
+.sidebar.active .menu-icon { 
+  transform: translate(calc(20px + 50%),-50%); 
+}
+
+/* Container */
+.top_container {
+  position: relative;
+  margin: 20px 0;
+}
+
+/*** 🔻 Bottom section ***/
+
+.sidebar-bottom {
+  margin-top: auto;
+  width: 100%;
+}
+
+/* USER INFO */
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+/* Avatar */
+.user-info .circle {
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: white;
+  flex-shrink: 0;
+}
+
+/* Letter */
+.user-info .circle .circle-text {
+  color: #0a1a33;
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+/* Text */
+.user-info .user-text {
+  margin-left: 8px;
+  height: 40px;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+}
+
+.sidebar.active .user-text {
+  display: flex;
+}
+
+/* Username */
+.user-info .username {
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Role */
+.user-info .user-role {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+/* Gear */
+.user-info .setting-logo {
+  margin-left: auto;
+  display: none;
+}
+
+.sidebar.active .setting-logo {
+  display: block;
+}
+
+.user-info .setting-logo i {
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+}
+
+.user-info .setting-logo i:hover {
+  color: #2563ec;
+}

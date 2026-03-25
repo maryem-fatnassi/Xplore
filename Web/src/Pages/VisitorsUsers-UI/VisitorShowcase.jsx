@@ -48,7 +48,7 @@ const [places, setplaces] = useState([]);
 
       <div className="impact-footer">
         <p>MEMBERSHIP UNLOCKS 1,200+ ENCRYPTED SITES</p>
-        <button className="impact-cta-btn">ACCESS DATABASE</button>
+        {/* <button className="impact-cta-btn">ACCESS DATABASE</button> */}
       </div>
     </section>
   );

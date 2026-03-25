@@ -1,5 +1,6 @@
 import React from 'react';
 import '../CSSComponents/footer.css';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -23,10 +24,10 @@ const Footer = () => {
         <div className="footer-main-info">
           <h2 className="glitch-logo" data-text="X-PLORE">X-PLORE</h2>
           <nav className="scattered-nav">
-            <a href="#home" className="nav-item">HOME</a>
-            <a href="#challenges" className="nav-item">RARE PLACES</a>
-            <a href="#places" className="nav-item">CHALLENGES</a>
-            <a href="#contact" className="nav-item">POSTS</a>
+            <li className='nav-item'><Link to={"/home"}>Home</Link></li>
+          <li className='nav-item'><Link to={"/rarePlaces"}>Rare Places</Link></li>
+          <li className='nav-item'><Link to={"/challenges"}>Challenges</Link></li>
+          <li className='nav-item'><Link to={"/posts"}>Posts</Link></li>
           </nav>
         </div>
 

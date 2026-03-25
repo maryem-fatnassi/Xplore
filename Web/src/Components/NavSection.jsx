@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import '../CSSComponents/navSection.css';
 import ProfileSidebar from './ProfileSidebar';
 import Notifications from './Notifications';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isNotifOpen, setIsNotifOpen] = useState(false);
+  const navigate = useNavigate();
 
+  const location = useLocation();
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -19,10 +21,10 @@ const Navbar = () => {
         <div className="logo">X-Plore</div>
 
         <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
-          <li><a href="/home">Home</a></li>
-          <li><a href="/rarePlaces"><Link to={"/rarePlaces"}></Link> Rare places</a></li>
-          <li><a href="/challenges">Challenges</a></li>
-          <li><a href="/posts">Posts</a></li>
+          <li><Link to={"/home"}>Home</Link></li>
+          <li><Link to={"/rarePlaces"}>Rare Places</Link></li>
+          <li><Link to={"/challenges"}>Challenges</Link></li>
+          <li><Link to={"/posts"}>Posts</Link></li>
                     
           <li className="mobile-icons">
             <span className="icon"><i class="fa-solid fa-bell"></i></span>
@@ -32,7 +34,9 @@ const Navbar = () => {
 
         <div className="desktop-icons">
           {/* <button className="icon-btn" title="Notifications" onClick={() => setIsNotifOpen(true)}><i class="fa-solid fa-bell"></i></button> */}
-          <button className="icon-btn" title="Profile" onClick={() => setIsSidebarOpen(true)}><i class="fa-solid fa-user"></i></button>
+          {
+            location.pathname !== "/" ? <button className="icon-btn" title="Profile" onClick={() => setIsSidebarOpen(true)}><i class="fa-solid fa-user"></i></button> : <button className='auth-button' onClick={()=>navigate("/login")}>Login</button>
+          }
         </div>
 
         <div className="menu-toggle" onClick={toggleMenu}>

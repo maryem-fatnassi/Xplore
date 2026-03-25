@@ -17,6 +17,11 @@ const postSchema = new mongoose.Schema({
     text: String,
     createdAt: { type: Date, default: Date.now }
   }],
+  status: {
+    type: String,
+    enum: ["pending", "published", "rejected"],
+    default: "pending"
+  }
 }, { timestamps: true }); // سيعطينا حقل createdAt و updatedAt تلقائياً
 
 module.exports = mongoose.model("Post", postSchema);

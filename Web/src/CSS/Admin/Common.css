@@ -1,0 +1,219 @@
+*{
+  font-family: 'Poppins', sans-serif;
+}
+/* avatar */
+.avatar-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.avatar-fallback {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* icon */
+.male-icon {
+  color: #3b82f6;
+  font-size: 18px;
+}
+
+.female-icon {
+  color: #ec4899;
+  font-size: 18px;
+}
+/* action*/
+.actions-cell {
+  display: flex;
+  gap: 8px;
+}
+
+.action-btn {
+  border: none;
+  cursor: pointer;
+
+  width: 36px;
+  height: 36px;
+
+  border-radius: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+  transition: all 0.2s ease;
+}
+
+.action-btn i {
+  font-size: 14px;
+}
+
+.action-btn.edit,.action-btn.view {
+  background-color: #2563ec;
+}
+
+.action-btn.edit:hover,.action-btn.view {
+  background-color: #1d4ed8;
+}
+
+.action-btn.toggle {
+  background-color: #f59e0b;
+}
+
+.action-btn.toggle:hover {
+  background-color: #d97706;
+}
+
+/* Active (user is enabled) */
+.action-btn.toggle.active {
+  background-color: #f59e0b; /* green */
+}
+
+.action-btn.toggle.active:hover {
+  background-color: #d97706;
+}
+
+/* Inactive (user is disabled) */
+.action-btn.toggle.inactive {
+  background-color: #6b7280; /* gray */
+}
+
+.action-btn.toggle.inactive:hover {
+  background-color: #4b5563;
+}
+
+.action-btn.delete {
+  background-color: #ef4444;
+}
+
+.action-btn.delete:hover {
+  background-color: #dc2626;
+}
+
+.action-btn.accept {
+  background-color: #22c55e;
+  color: white;
+}
+
+.action-btn.accept:hover {
+  background-color: #16a34a;
+}
+
+.action-btn:active {
+  transform: scale(0.95);
+}
+
+.btn-normal,
+.btn-delete,
+.btn-cancel {
+  padding: 10px 16px;
+  border-radius: 10px;
+
+  border: none;
+  cursor: pointer;
+
+  font-weight: 600;
+  font-size: 16px;
+
+  transition: all 0.2s ease;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
+  color: white;
+
+  gap: 6px;
+}
+.btn-normal{
+  background-color: var(--btn-primary);
+}
+
+.btn-normal:hover{
+  background-color: var(--btn-primary-hover);
+}
+
+.btn-delete{
+  background-color: var(--btn-delete);
+}
+
+.btn-delete:hover{
+  background-color: var(--btn-delete-hover);
+}
+
+.btn-cancel{
+  background-color: var(--btn-secondary);
+}
+
+.btn-cancel:hover{
+  background-color: var(--btn-secondary-hover);
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.button-group button:hover {
+  transform: none;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 220px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #374151;
+}
+
+/* input fields */
+.input-field {
+  width: 100%;
+  padding: 12px 14px;
+
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+
+  /*background-color: #f9fafb;*/
+
+  font-size: 14px;
+
+  transition: all 0.2s ease;
+}
+
+.input-field:hover {
+  border-color: #9ca3af;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--primary);
+  background-color: #ffffff;
+
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+textarea.input-field {
+  resize: vertical; /* allow vertical resize only */
+  min-height: 100px;
+  line-height: 1.4;
+}

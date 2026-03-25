@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import '../../CSS/VisitorsUsersCss/heroSection.css';
+import { useNavigate } from 'react-router-dom';
 
 const HeroSection = () => {
 const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
+const navigate = useNavigate();
   // Mouse tracking for the interactive light effect
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -45,7 +46,7 @@ const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
             </div>
             
             <div className="bold-cta">
-              <button className="register-now-btn">
+              <button className="register-now-btn" onClick={()=>navigate("/login")}>
                 GET INSTANT ACCESS — FREE
                 <span className="arrow-icon">→</span>
               </button>

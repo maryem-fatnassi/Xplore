@@ -87,6 +87,20 @@
   transition: 0.3s;
 }
 
+.auth-button {
+  padding: 5px 16px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: rgb(249, 163, 4);
+  color: #fff;
+  cursor: pointer;
+}
+
+.auth-button:hover{
+  background-color: rgba(249, 163, 4, 0.858);
+}
+
 /* التجاوب (Media Queries) */
 @media screen and (max-width: 796px) {
   .nav-links {

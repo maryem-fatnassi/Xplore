@@ -1,0 +1,40 @@
+:root {
+  /* 🎨 Primary Theme */
+  --primary: #2563ec;
+  --primary-hover: #1e4fd1;
+
+  /* 🌌 Sidebar */
+  --sidebar-bg: #0a1a33;
+  --sidebar-hover: rgba(37, 99, 236, 0.3);
+  --sidebar-active: #2563ec;
+
+  /* 📝 Text */
+  --text-light: #ffffff;
+  --text-muted: #94a3b8;
+  --text-dark: #0a1a33;
+
+  /* 🧱 UI */
+  --bg-main: #f5f6fa;
+  --bg-card: #ffffff;
+
+  --border-color: rgba(255, 255, 255, 0.2);
+
+  /* 🔘 Button / UI */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+
+  /* 👤 User avatar */
+  --avatar-bg: #ffffff;
+  --avatar-text: #0a1a33;
+
+  /* ⚙️ Icon hover */
+  --icon-hover: #2563ec;
+
+  /* Button colors */
+  --btn-primary: #2563ec;
+  --btn-primary-hover: #1d4ed8;
+  --btn-secondary: #6b7280;
+  --btn-secondary-hover: #4b5563;
+  --btn-delete: #ef4444;
+  --btn-delete-hover: #dc2626;
+}
