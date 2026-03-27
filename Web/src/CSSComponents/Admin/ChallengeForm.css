@@ -1,0 +1,202 @@
+.admin-challenge-form form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 60px;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .admin-challenge-form form {
+    grid-template-columns: 1fr;
+  }
+}
+.admin-challenge-form .image-preview .image-img-input{
+    width: 100%;
+    border: 2px solid var(--primary);
+    border-radius: 10px;
+}
+
+.admin-challenge-form .image-img-input {
+  height: 400px;
+  border: 2px dashed #d1d5db;
+  border-radius: 12px;
+  background-color: #f9fafb;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Hover effect */
+.admin-challenge-form .image-img-input:hover {
+  border-color: #3b82f6;
+  background-color: #eff6ff;
+}
+
+/* Icon */
+.admin-challenge-form .image-img-input i {
+  font-size: 40px;
+  color: #9ca3af;
+  margin-bottom: 10px;
+  transition: 0.2s;
+}
+
+/* Hover icon */
+.admin-challenge-form .image-img-input:hover i {
+  color: #3b82f6;
+  transform: scale(1.1);
+}
+
+/* Text under icon */
+.admin-challenge-form .image-img-input span {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* Image preview */
+.admin-challenge-form .image-img-input img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.admin-challenge-form .difficulty-toggle{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.admin-challenge-form .input-field{
+  color: black;
+}
+
+.difficulty-toggle {
+  display: flex;
+}
+
+/* Base style */
+.difficulty-option {
+  padding: 10px 20px;
+  border: 2px solid #ccc;
+  cursor: pointer;
+  transition: 0.2s;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+/* Rounded edges (first & last) */
+.difficulty-option-easy {
+  border-radius: 8px 0 0 8px;
+  border-right-width: 0;
+  border-color: #22c55e;
+  color: #22c55e;
+}
+
+.difficulty-option-medium {
+  border-right-width: 0;
+  border-left-width: 0;
+  border-color: #eab308;
+  color: #eab308;
+}
+
+.difficulty-option-hard {
+  border-right-width: 0;
+  border-left-width: 0;
+  border-color: #f97316;
+  color: #f97316;
+}
+
+.difficulty-option-extreme {
+  border-radius: 0 8px 8px 0;
+  border-left-width: 0;
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+/* Active state */
+.difficulty-option.active {
+  color: white !important;
+  border-color: transparent;
+}
+
+/* Active colors per level */
+.difficulty-option-easy.active {
+  background-color: #22c55e;
+  border-color: #15803d;
+  border-right-width: 2px;
+}
+
+.difficulty-option-medium.active {
+  background-color: #eab308;
+  border-color: #a16207;
+  border-left-width: 2px;
+  border-right-width: 2px;
+}
+
+.difficulty-option-hard.active {
+  background-color: #f97316;
+  border-color: #c2410c;
+  border-left-width: 2px;
+  border-right-width: 2px;
+}
+
+.difficulty-option-extreme.active {
+  background-color: #ef4444;
+  border-color: #b91c1c;
+  border-left-width: 2px;
+}
+
+
+/* Hint */
+.admin-challenge-form .image-hint {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.admin-challenge-form .image-title {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 4px;
+  color: #333;
+}
+
+.admin-challenge-form .image-desc {
+  font-size: 12px;
+  color: #777;
+  line-height: 1.4;
+}
+
+/* equipment and rules inputs */
+.dynamic-input {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.btn-add {
+  margin-top: 8px;
+  padding: 6px 10px;
+  border: none;
+  background-color: #3b82f6;
+  color: white;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.btn-remove {
+  background-color: #ef4444;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 6px;
+}

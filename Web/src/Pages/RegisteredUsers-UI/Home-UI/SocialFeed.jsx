@@ -10,7 +10,7 @@ useEffect(()=>{
 },[])
 console.log(posts)
   // دالة لاستخراج أول حرف من الاسم
-  const getInitial = (name) => name.charAt(0).toUpperCase();
+  const getInitial = (name) => name?.charAt(0).toUpperCase();
 
   return (
     <section className="social-feed">
@@ -25,11 +25,11 @@ console.log(posts)
             {/* الجزء العلوي: الأفاتار والاسم */}
             <div className="post-top-bar">
               <div className="user-avatar-initial">
-                {getInitial(post.user.userName)}
+                {getInitial(post.user?.userName)}
               </div>
               <div className="user-text-info">
-                <h5>{post.user.userName}</h5>
-                <span>{post.location}</span>
+                <h5>{post.user?.userName}</h5>
+                <span>{post?.location}</span>
               </div>
             </div>
 

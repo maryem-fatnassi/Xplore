@@ -1,4 +1,4 @@
-import React, { use } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import styles from '../CSSComponents/profile.module.css';
 import { User, X, MapPin, Compass, Trophy, Settings, LogOut, Image as ImageIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -7,10 +7,22 @@ import { useNavigate } from 'react-router-dom';
 
 // const defaultAvatar = "https://via.placeholder.com/110";
 const ProfileSidebar = ({ isOpen, onClose }) => {
-  const saved = localStorage.getItem("user");
-  const user =  JSON.parse(saved)
-  console.log(saved)
-  const navigate = useNavigate;
+  // const saved = localStorage.getItem("user");
+  // const user =  JSON.parse(saved)
+  // console.log(saved)
+  const [userData, setUserData] = useState({ userName: "", email: "" });
+
+  useEffect(() => {
+    if (isOpen) {
+      const saved = localStorage.getItem("user");
+      if (saved) {
+        setUserData(JSON.parse(saved));
+      }
+    }
+  }, [isOpen]);
+
+  const navigate = useNavigate();
+
   return (
 <>
       {/* Background Overlay with higher contrast */}
@@ -32,15 +44,27 @@ const ProfileSidebar = ({ isOpen, onClose }) => {
 
         {/* User Identity Section */}
         <div className={styles.userSection}>
-          {/* <div className={styles.avatarContainer}>
-            <img 
-              src={defaultAvatar} 
-              alt="User avatar" 
-              className={styles.avatarImage} 
-            />
-          </div> */}
-          <h3 className={styles.userName}>{user.userName}</h3> 
-          <p className={styles.userEmail}>{user.email}</p>
+
+<div className={styles.userSection}>
+  <div className={styles.avatarContainer}>
+    {userData.avatar ? (
+      <img 
+        src={userData.avatar} 
+        alt="User avatar" 
+        className={styles.avatarImage} 
+      />
+    ) : (
+      <img 
+        src={userData.gender === "female" ? "/images/unknown_user_female1.jpg" : "/images/unknown_user_male1.jpg"} 
+        alt="Default avatar" 
+        className={styles.avatarImage} 
+      />
+    )}
+  </div>
+  <h3 className={styles.userName}>{userData.userName}</h3> 
+  <p className={styles.userEmail}>{userData.email}</p>
+</div>
+
         </div>
 
         {/* Added Stats Bar - Vital for Exploration Apps */}
@@ -62,11 +86,11 @@ const ProfileSidebar = ({ isOpen, onClose }) => {
         {/* Refined Navigation Links */}
         <nav className={styles.navLinks}>
           <NavigationItem icon={<User size={18}/>} text="My Profile" onClick={() => navigate("/my-profile")}/>
-          <NavigationItem icon={<Compass size={18}/>} text="My Expeditions" />
-          <NavigationItem icon={<Trophy size={18}/>} text="Challenges" />
+          {/* <NavigationItem icon={<Compass size={18}/>} text="My Expeditions" /> */}
+          <NavigationItem icon={<Trophy size={18}/>} text="Challenges" onClick={() => navigate("/my-challenge")}/>
           {/* <NavigationItem icon={<Settings size={18}/>} text="Account Settings" /> */}
           
-          <div style={{ marginTop: '20px' }}>
+          <div style={{ marginTop: '20px' }} onClick={() => navigate("/login")}>
             <NavigationItem 
               icon={<LogOut size={18}/>} 
               text="Sign Out" 
@@ -84,9 +108,8 @@ const ProfileSidebar = ({ isOpen, onClose }) => {
   );
 };
 
-// مكون فرعي للأزرار لضمان نظافة الكود
-const NavigationItem = ({ icon, text, className = '' }) => (
-  <button className={`${styles.navButton} ${className}`}>
+const NavigationItem = ({ icon, text, className = '' , onClick}) => (
+  <button className={`${styles.navButton} ${className}`} onClick={onClick}>
     <span className={styles.navIconContainer}>{icon}</span>
     <span className={styles.navText}>{text}</span>
   </button>

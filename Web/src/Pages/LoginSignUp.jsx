@@ -42,11 +42,12 @@ e.preventDefault();
     if (response && response.user) {
       // نخزن بيانات المستخدم فقط في الـ localStorage
       localStorage.setItem("user", JSON.stringify(response.user));
-      alert("Login Successful! " + response.user.is_admin ? 'admin' : 'user' );
       if(response.user.is_admin){
+        alert("admin")
         navigate("/admin");
       }
       else{
+        alert("Login Successful! " );
         navigate("/home");
       }
     } else {

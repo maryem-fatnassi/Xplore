@@ -6,7 +6,6 @@
   color: #fff;
 }
 
-/* العنصر المتحرك في الخلفية (Infinite Animation) */
 .infinite-bg-element {
 position: absolute;
     width: 470px;
@@ -35,11 +34,10 @@ position: absolute;
 .glitch-text {
   font-size: 3rem;
   font-weight: 900;
-  color: #f59e0b; /* لون برتقالي فخم كسرنا به اللون الأزرق */
+  color: #f59e0b; 
   text-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
 }
 
-/* الكروت وتنسيق الظهور التدريجي */
 .challenges-container {
    display: flex;
     overflow-x: auto;
@@ -57,7 +55,7 @@ position: absolute;
   min-width: 300px;
   max-width: 300px;
   background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(12px); /* تأثير الزجاج */
+  backdrop-filter: blur(12px); 
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 30px;
   padding: 15px;
@@ -65,7 +63,7 @@ position: absolute;
   opacity: 0;
   transform: translateY(50px);
   animation: slideUp 0.8s forwards;
-  animation-delay: var(--delay); /* كل كرت يظهر بعد الذي قبله */
+  animation-delay: var(--delay); 
 }
 
 @keyframes slideUp {

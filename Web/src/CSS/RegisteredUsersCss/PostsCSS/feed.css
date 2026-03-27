@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
 
 .xplore-feed-page {
-  background: #02040a; /* خلفية سوداء مائلة للأزرق الداكن جداً */
+  background: #02040a; 
   color: #fff;
   min-height: 100vh;
   padding: 50px 0;
@@ -14,9 +14,8 @@
   padding: 0 20px;
 }
 
-/* --- نموذج إنشاء منشور زجاجي (Create Post Glass) --- */
 .create-post-glass {
-  background: rgba(10, 25, 50, 0.4); /* أزرق فاخر شفاف */
+  background: rgba(10, 25, 50, 0.4); 
   border: 1px solid rgba(100, 200, 255, 0.1);
   border-radius: 20px;
   padding: 25px;
@@ -71,7 +70,7 @@ textarea {
 }
 
 .publish-btn {
-  background: linear-gradient(135deg, #0055ff, #00aaff); /* تدرج أزرق فاخر */
+  background: linear-gradient(135deg, #0055ff, #00aaff); 
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -89,9 +88,8 @@ textarea {
   box-shadow: 0 6px 20px rgba(0, 100, 255, 0.5);
 }
 
-/* --- كروت المنشورات الفاخرة (Luxury Post Cards) --- */
 .post-card-luxury {
-  background: #0a0e17; /* أزرق غامق جداً */
+  background: #0a0e17; 
   border: 1px solid rgba(100, 200, 255, 0.05);
   border-radius: 20px;
   margin-bottom: 40px;
@@ -173,7 +171,6 @@ textarea {
   display: block;
 }
 
-/* --- شريط التفاعل الفاخر (Luxury Interaction Bar) --- */
 .post-footer {
   border-top: 1px solid rgba(255, 255, 255, 0.03);
 }
@@ -200,12 +197,10 @@ textarea {
   transform: scale(1.05);
 }
 
-/* حالة الإعجاب النشطة */
 .stat-btn.liked {
   color: #ff4b2b;
 }
 
-/* قسم التعليقات */
 .comments-section {
   display: none;
   padding: 0 25px 25px;

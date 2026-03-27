@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import '../CSSComponents/navSection.css';
 import ProfileSidebar from './ProfileSidebar';
-import Notifications from './Notifications';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
@@ -35,7 +34,7 @@ const Navbar = () => {
         <div className="desktop-icons">
           {/* <button className="icon-btn" title="Notifications" onClick={() => setIsNotifOpen(true)}><i class="fa-solid fa-bell"></i></button> */}
           {
-            location.pathname !== "/" ? <button className="icon-btn" title="Profile" onClick={() => setIsSidebarOpen(true)}><i class="fa-solid fa-user"></i></button> : <button className='auth-button' onClick={()=>navigate("/login")}>Login</button>
+            location.pathname !== "/visitors" ? <button className="icon-btn" title="Profile" onClick={() => setIsSidebarOpen(true)}><i class="fa-solid fa-user"></i></button> : <button className='auth-button' onClick={()=>navigate("/login")}>Login</button>
           }
         </div>
 
@@ -49,7 +48,7 @@ const Navbar = () => {
         isOpen={isSidebarOpen} 
         onClose={() => setIsSidebarOpen(false)} 
       />
-      <Notifications isOpen={isNotifOpen} onClose={() => setIsNotifOpen(false)} />
+      {/* <Notifications isOpen={isNotifOpen} onClose={() => setIsNotifOpen(false)} /> */}
     </nav>
   );
 };

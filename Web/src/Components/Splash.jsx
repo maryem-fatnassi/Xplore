@@ -5,18 +5,22 @@ import { useNavigate } from 'react-router-dom';
 const Preloader = () => {
   const [loading, setLoading] = useState(true);
   const [percent, setPercent] = useState(0);
-  const navigate = useNavigate;
+  const navigate = useNavigate();
   useEffect(() => {
     const interval = setInterval(() => {
       setPercent((prev) => (prev < 100 ? prev + 1 : 100));
     }, 30);
 
-    window.onload = () => {
-      setTimeout(() => setLoading(false), 3500);
-    };
+    const timer = setTimeout(() => {
+      setLoading(false);
+      navigate("/visitors");
+    }, 3500);
 
-    return () => clearInterval(interval);
-  }, []);
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timer);
+    };
+  }, [navigate]);
 
   if (!loading) return null;
 

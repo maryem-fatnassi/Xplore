@@ -4,7 +4,6 @@
   color: #fff;
 }
 
-/* الترويسة */
 .feed-header {
   text-align: center;
   margin-bottom: 60px;
@@ -25,7 +24,6 @@
   margin: 0 auto;
 }
 
-/* الشبكة */
 .posts-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -47,7 +45,6 @@
   border-color: #2563eb;
 }
 
-/* Avatar مثل Gmail */
 .post-top-bar {
   display: flex;
   align-items: center;
@@ -79,7 +76,6 @@
   color: #64748b;
 }
 
-/* الصورة */
 .post-media-box {
   position: relative;
   height: 180px;
@@ -104,7 +100,6 @@
   backdrop-filter: blur(4px);
 }
 
-/* الرأي */
 .post-opinion {
   margin-top: 15px;
   font-style: italic;
@@ -117,7 +112,6 @@
   margin: 0;
 }
 
-/* التجاوب */
 @media (max-width: 768px) {
   .feed-title { font-size: 2rem; }
 }

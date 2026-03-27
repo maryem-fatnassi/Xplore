@@ -1,7 +1,7 @@
 const express = require("express");
 const postRouter = express.Router();
 const Post = require("../../Models/RegisteredUsers/posts");
-const upload = require("../../Middleware/upload");
+const upload = require("../../Middleware/uploadUserAvatar");
 
 postRouter.post("/create", upload.single("media"), async (req, res) => {
   try {

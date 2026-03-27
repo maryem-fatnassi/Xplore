@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { getChallenges, deleteChallenge } from "../../../Services/Admin/ChallengesService";
+import { getRarePlaces, deleteRarePlace } from "../../../Services/Admin/RarePlacesService";
 
 import DataTable from "react-data-table-component";
 
@@ -9,48 +9,44 @@ import Modal from "../../../Components/Admin/Modal";
 
 import '../../../CSS/Admin/variables.css';
 import '../../../CSS/Admin/Common.css';
-import '../../../CSS/Admin/ChallengesPage.css';
+import '../../../CSS/Admin/RarePlacesPage.css';
 import '../../../CSSComponents/Admin/DataTable.css';
 
 
 
-export default function ChallengesPage() {
-  const [challenges, setChallenges] = useState([]);
+export default function RarePlacesPage() {
+  const [places, setPlaces] = useState([]);
   const [page, setPage] = useState(1);
   const [totalRows, setTotalRows] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [sortColumn, setSortColumn] = useState("createdAt");
   const [sortDirection, setSortDirection] = useState("desc");
 
-  const [tab, setTab] = useState("easy");
-  const [difficultyCount, setDifficultyCount] = useState({ easy: 0, medium: 0, hard: 0, extreme: 0});
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [selectedChallenge, setSelectedChallenge] = useState(null);
+  const [selectedPlace, setSelectedPlace] = useState(null);
 
 
   const navigate = useNavigate();
   
-  async function loadChallenges() {
-    const res = await getChallenges({
+  async function loadPlaces() {
+    const res = await getRarePlaces({
       page,
       limit: rowsPerPage,
-      difficulty: tab,
       sortBy: sortColumn,
       sortOrder: sortDirection
     });
 
     console.log(res);
 
-    setChallenges(res.challenges);
+    setPlaces(res.places);
     setTotalRows(res.total);
-    setDifficultyCount(res.count);
   }
 
 
   useEffect(() => {
-    loadChallenges();
-  }, [page, tab,rowsPerPage, sortColumn, sortDirection]);
+    loadPlaces();
+  }, [page,rowsPerPage, sortColumn, sortDirection]);
 
 
   const columns = [
@@ -69,10 +65,10 @@ export default function ChallengesPage() {
       )
     },
     {
-      name: "Title",
-      selector: row => row.title,
+      name: "Name",
+      selector: row => row.name,
       sortable: true,
-      sortField: "title"
+      sortField: "name"
     },
     {
       name: "Description",
@@ -84,23 +80,9 @@ export default function ChallengesPage() {
       width: "200px"
     },
     {
-      name: "Duration",
-      selector: row => row.duration,
-      sortField: "duration"
-    },
-    {
-      name: "Type",
-      selector: row => row.type,
-      sortable: true,
-      sortField: "type",
-      width: "100px"
-    },
-    {
-      name: "Joined Users",
-      selector: row => row.countUsers,
-      sortable: true,
-      sortField: "countUsers",
-      width: "100px"
+      name: "Location",
+      selector: row => row.location,
+      sortField: "location"
     },
     {
       name: "Created",
@@ -123,26 +105,12 @@ export default function ChallengesPage() {
       sortField: "updatedAt"
     },
     {
-      name: "Equipements",
-      selector: row => row.countEquipment,
-      sortable: true,
-      sortField: "countEquipment",
-      width: "100px"
-    },
-    {
-      name: "Rules",
-      selector: row => row.countRules,
-      sortable: true,
-      sortField: "countRules",
-      width: "100px"
-    },
-    {
       name: "Actions",
       cell: row => (
         <div className="actions-cell">
           <button
             className="action-btn edit"
-            onClick={() => navigate(`/admin/challenges/edit/${row._id}`)}
+            onClick={() => navigate(`/admin/places/edit/${row._id}`)}
           >
             <i className="fa fa-pen"></i>
           </button>
@@ -150,7 +118,7 @@ export default function ChallengesPage() {
           <button
             className="action-btn delete"
             onClick={() => {
-              setSelectedChallenge(row);
+              setSelectedPlace(row);
               setShowDeleteModal(true);
             }}
           >
@@ -164,9 +132,9 @@ export default function ChallengesPage() {
 
   async function handleDelete(id) {
     try {
-      await deleteChallenge(id);
+      await deleteRarePlace(id);
 
-      loadChallenges();
+      loadPlaces();
       setShowDeleteModal(false);
     } catch (err) {
       console.error(err);
@@ -176,44 +144,13 @@ export default function ChallengesPage() {
   return (
     <div>
 
-      <h1> Challenges Management </h1>
-        <div className="tabs">
-          <button
-            className={`tab ${tab === "easy" ? "active" : ""}`}
-            onClick={() => { setTab("easy"); setPage(1); }}
-          >
-            Easy ({difficultyCount['easy']})
-          </button>
+      <h1> Rare Places Management </h1>
 
-          <button
-            className={`tab ${tab === "medium" ? "active" : ""}`}
-            onClick={() => { setTab("medium"); setPage(1); }}
-          >
-            Medium ({difficultyCount['medium']})
-          </button>
-
-          <button
-            className={`tab ${tab === "hard" ? "active" : ""}`}
-            onClick={() => { setTab("hard"); setPage(1); }}
-          >
-            Hard ({difficultyCount['hard']})
-          </button>
-
-          <button
-            className={`tab ${tab === "extreme" ? "active" : ""}`}
-            onClick={() => { setTab("extreme"); setPage(1); }}
-          >
-            Extreme ({difficultyCount['extreme']})
-          </button>
-        </div>
-    
-      
-
-      <div className="table-container challenges-table-container">
+      <div className="table-container rare-places-table-container">
         <DataTable
-          title="Challenges"
+          title="RarePlaces"
           columns={columns}
-          data={challenges}
+          data={places}
           pagination
           paginationServer
           paginationTotalRows={totalRows}
@@ -229,9 +166,9 @@ export default function ChallengesPage() {
           highlightOnHover
           striped
           actions={
-            <button className="add-user-btn" onClick={() => navigate("/admin/challenges/new")}>
+            <button className="add-user-btn" onClick={() => navigate("/admin/places/new")}>
               <i className="fa fa-plus"></i>
-              Add Challenge
+              Add Rare Place
             </button>
           }
 
@@ -242,7 +179,7 @@ export default function ChallengesPage() {
         <Modal
           isOpen={showDeleteModal}
           onClose={() => setShowDeleteModal(false)}
-          title="Delete Challenge"
+          title="Delete Place"
           actions={
             <>
               <button
@@ -254,7 +191,7 @@ export default function ChallengesPage() {
 
               <button
                 className="modal-btn danger"
-                onClick={() => handleDelete(selectedChallenge._id)}
+                onClick={() => handleDelete(selectedPlace._id)}
               >
                 Delete
               </button>
@@ -263,7 +200,7 @@ export default function ChallengesPage() {
         >
           <p>
             Are you sure you want to delete{" "}
-            <strong>{selectedChallenge?.title}</strong>?
+            <strong>{selectedPlace?.name}</strong>?
           </p>
         </Modal>
       )}

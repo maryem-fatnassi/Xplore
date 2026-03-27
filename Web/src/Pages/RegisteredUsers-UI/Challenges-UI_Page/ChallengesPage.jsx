@@ -22,6 +22,17 @@ const ChallengesPage = () => {
   const [selected, setSelected] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
+  const formatDate = (dateString) => {
+  if (!dateString) return "";
+  const date = new Date(dateString);
+  
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0'); 
+  const year = date.getFullYear();
+
+  return `${day}/${month}/${year}`;
+};
+
   const getLoggedUser = () => {
     const saved = localStorage.getItem("user");
     if (!saved || saved === "undefined") return null;
@@ -46,13 +57,11 @@ const ChallengesPage = () => {
       return;
     }
 
-    // تحديد الـ ID الصحيح (سواء كان id أو _id)
     const currentChallengeId = selected?._id || selected?.id;
 
     try {
       await joinChallengeService(currentChallengeId, userId);
 
-      // 1. تحديث القائمة الكبيرة (challengesData)
       setChallengesData((prevData) =>
         prevData.map((ch) => {
           const chId = ch._id || ch.id;
@@ -69,7 +78,6 @@ const ChallengesPage = () => {
         }),
       );
 
-      // 2. تحديث التحدي المختار (selected)
       setSelected((prevSelected) => ({
         ...prevSelected,
         joinedUsers: prevSelected.joinedUsers
@@ -88,6 +96,7 @@ const ChallengesPage = () => {
   useEffect(() => {
     fetchAllChallenges(setChallengesData);
   }, []);
+  console.log(challengesData)
   useEffect(() => {
     if (challengesData.length > 0 && !selected) setSelected(challengesData[0]);
   }, [challengesData, selected]);
@@ -176,10 +185,15 @@ const ChallengesPage = () => {
                   <li key={i}> {item}</li>
                 ))}
               </ul>
+              <div className="challenge-schedule-box">
+                <div className="status-indicator"></div>
+                <p className="schedule-text">
+                  Join the Team: The collective journey starts on :
+                  <span className="highlight-date">{formatDate(selected?.date)}</span>
+                </p>
+              </div>
               <button
-                // نتحقق من الانضمام مباشرة داخل الكلاس
                 className={`deploy-btn ${selected?.joinedUsers?.includes(userId) ? "joined-mode" : ""}`}
-                // نمنع الضغط إذا كان المستخدم منضماً لهذا التحدي بالذات
                 onClick={
                   selected?.joinedUsers?.includes(userId) ? null : openModal
                 }

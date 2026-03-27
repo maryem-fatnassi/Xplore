@@ -20,6 +20,7 @@ app.use("/fetchPlaces",require("./Routes/RarePlaces/getPlaces"));
 app.use("/challenges",require("./Routes/Challenges/challengePost"));
 app.use("/getChallenges",require("./Routes/Challenges/getChallenges"))
 app.use("/api/challenges", require("./Routes/Challenges/challengeJoinedUsers"));
+app.use("/api/my-challenges",require("./Routes/Challenges/userChallenges"))
 
 //** Posts **/
 app.use("/api/posts",require("./Routes/Posts/createPost"));
@@ -35,5 +36,14 @@ app.use("/api/admin/posts",require("./Routes/Admin/Posts"));
 
 //** Admin Challengess **/
 app.use("/api/admin/challenges",require("./Routes/Admin/Challenges"));
+
+//** Updated User**/
+app.use("/api/users",require("./Routes/User/updateUser"));
+
+//** Admin Challenges **/
+app.use("/api/admin/challenges",require("./Routes/Admin/Challenges"));
+
+//** Admin Rare Places **/
+app.use("/api/admin/rare-places",require("./Routes/Admin/RarePlaces"));
 
 app.listen(process.env.PORT, () => console.log("Server is running"));

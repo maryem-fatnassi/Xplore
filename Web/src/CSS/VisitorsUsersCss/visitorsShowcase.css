@@ -24,7 +24,7 @@
   transform: translate(-50%, -50%);
   font-size: 25vw;
   font-weight: 900;
-  color: rgba(59, 130, 246, 0.03); /* الأزرق الملكي خافت جداً */
+  color: rgba(59, 130, 246, 0.03); 
   z-index: 1;
   pointer-events: none;
   letter-spacing: -1vw;

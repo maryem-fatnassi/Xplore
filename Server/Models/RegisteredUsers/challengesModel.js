@@ -29,7 +29,8 @@ const challengeSchema = new mongoose.Schema(
   joinedUsers: [{ 
     type: mongoose.Schema.Types.ObjectId, 
     ref: 'User' // يجب أن يطابق الاسم الذي وضعته في mongoose.model("User", ...)
-  }]
+  }],
+  date: Date
   },
   { timestamps: true },
 );

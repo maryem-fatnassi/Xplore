@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import '../../../CSS/RegisteredUsersCss/heroSection.css';
+import { useNavigate } from 'react-router-dom';
 
 const HeroSection = () => {
   const [loaded, setLoaded] = useState(false);
-
-  // لتفعيل الحركة عند تحميل الصفحة
+const navigate = useNavigate();
   useEffect(() => {
     setLoaded(true);
   }, []);
 
   return (
     <section className="hero-container">
-      {/* طبقة تراكب لإعطاء عمق وتغميق الخلفية قليلاً */}
       <div className="hero-overlay"></div>
       
-      {/* محتوى القسم الترحيبي */}
       <div className={`hero-content ${loaded ? 'fade-in' : ''}`}>
         <h2 className="hero-subtitle">ARE YOU READY TO</h2>
         <h1 className="hero-title">
@@ -25,8 +23,8 @@ const HeroSection = () => {
         </p>
         
         <div className="hero-btns">
-          <button className="btn-primary">Begin Your Challenge</button>
-          <button className="btn-secondary">Discover Hidden Gems</button>
+          <button className="btn-primary" onClick={()=> navigate("/challenges")}>Begin Your Challenge</button>
+          <button className="btn-secondary" onClick={()=> navigate("/rarePlaces")}>Discover Hidden Gems</button>
         </div>
       </div>
 

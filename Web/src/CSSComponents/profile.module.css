@@ -3,7 +3,7 @@
     position: fixed;
     top: 0;
     right: 0;
-    height: 100vh;
+    height: auto;
     width: 360px; /* العرض الافتراضي */
     z-index: 2000;
     background: #0b1120; /* الأزرق الداكن الفاخر مع شفافية قليلة */
@@ -87,7 +87,7 @@
     text-align: center;
 }
 
-.avatarContainer {
+/* .avatarContainer {
     position: relative;
     width: 110px;
     height: 110px;
@@ -97,16 +97,30 @@
 .avatarImage {
     width: 100%;
     height: 100%;
-    border-radius: 20px; /* زوايا منحنية حديثة */
+    border-radius: 20px; 
     object-fit: cover;
     border: 3px solid #1E3A8A;
-    box-shadow: 0 0 25px rgba(251, 146, 60, 0.3); /* توهج برتقالي */
+    box-shadow: 0 0 25px rgba(251, 146, 60, 0.3); 
     transition: 0.4s;
-    background-color: #f1f5f9; /* خلفية افتراضية في حال عدم وجود صورة */
+    background-color: #f1f5f9; 
+} */
+
+.avatarContainer {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(45deg, #1E3A8A, #FB923C); /* إطار بتدرج ألوان مشروعك */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
-.avatarContainer:hover .avatarImage {
-    transform: translateY(-5px) scale(1.03);
+.avatarImage {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover; /* لضمان عدم تمدد الصورة */
+  border: 2px solid #0a0a0c; /* فاصل بين الصورة والإطار الملون */
 }
 
 .userName {

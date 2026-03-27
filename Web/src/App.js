@@ -17,12 +17,15 @@ import Final from "./Pages/VisitorsUsers-UI/Final";
 import VisitorsHome from "./Pages/VisitorsUsers-UI/Home";
 import AdminPage from "./Pages/Admin-UI/AdminPage";
 import MyProfile from "./Pages/Profile/MyProfile";
+import Preloader from "./Components/Splash";
+import MyJoinedChallenges from "./Pages/RegisteredUsers-UI/Challenges-UI_Page/MyJoinedChallenges";
 
  function App(){
   return(
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<VisitorsHome/>} />
+        <Route path="/" element={<Preloader/>} />
+        <Route path="/visitors" element={<VisitorsHome/>}/>
          <Route path="/login" element={<LoginSignUp/>} />
          <Route path="/home" element={<Home/>}/>
           <Route path="rarePlaces" element={<RarePlacesPage/>}/>
@@ -30,6 +33,7 @@ import MyProfile from "./Pages/Profile/MyProfile";
           <Route path="/posts" element={<FeedPage/>}/>
           <Route path="/admin/*" element={<AdminPage/>} />
          <Route path="/my-profile" element={<MyProfile/>} />
+         <Route path="/my-challenge" element={<MyJoinedChallenges/>}/>
       </Routes>
     </BrowserRouter>
   )

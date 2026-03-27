@@ -54,28 +54,64 @@ export default function UserForm({ id,admin = true, onSuccess, onCancel }) {
     }));
   }
 
-  async function handleSubmit(e) {
-    e.preventDefault();
 
-    try {
-      const data = new FormData();
+    // e.preventDefault();
 
-      Object.keys(form).forEach(key => {
+    // try {
+    //   const data = new FormData();
+
+    //   Object.keys(form).forEach(key => {
+    //     data.append(key, form[key]);
+    //   });
+
+    //   if (isEdit) {
+    //     await updateUser(id, data);
+    //   } else {
+    //     await createUser(data);
+    //   }
+
+    //   //navigate("/admin/users");
+    //   onSuccess?.();
+    // } catch (err) {
+    //   console.error(err);
+    // }
+    async function handleSubmit(e) {
+  e.preventDefault();
+
+  try {
+    const data = new FormData();
+
+    Object.keys(form).forEach(key => {
+      if (form[key] !== null && form[key] !== undefined) {
         data.append(key, form[key]);
-      });
-
-      if (isEdit) {
-        await updateUser(id, data);
-      } else {
-        await createUser(data);
       }
+    });
 
-      //navigate("/admin/users");
-      onSuccess?.();
-    } catch (err) {
-      console.error(err);
+    if (isEdit) {
+      const updatedUserResponse = await updateUser(id, data);
+
+      const currentUser = JSON.parse(localStorage.getItem("user"));
+
+      const newUserInfo = { 
+        ...currentUser, 
+        ...updatedUserResponse, 
+        userName: form.userName, 
+        email: form.email,
+        description: form.description
+      };
+
+      localStorage.setItem("user", JSON.stringify(newUserInfo));
+      
+    } else {
+      await createUser(data);
     }
+
+    onSuccess?.();
+  } catch (err) {
+    console.error("Error during submission:", err);
   }
+}
+  
 
   return (
 

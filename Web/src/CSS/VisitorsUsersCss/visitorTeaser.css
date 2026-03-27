@@ -1,6 +1,6 @@
 .teaser-section {
   padding: 100px 8%;
-  background-color: #000a1a; /* أغمق من الهيرو ليعطي عمقاً */
+  background-color: #000a1a; 
   color: #fff;
   text-align: center;
 }
@@ -50,7 +50,7 @@
   position: absolute;
   inset: 0;
   background: rgba(0, 18, 38, 0.7);
-  backdrop-filter: blur(12px); /* تأثير التغبيش */
+  backdrop-filter: blur(12px); 
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -8,7 +8,9 @@ import { NavLink } from "react-router-dom";
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(true);
   const [showSettings, setShowSettings] = useState(false);
-
+  const saved = localStorage.getItem("user");
+  const adminUser = JSON.parse(saved);
+  console.log(adminUser)
   return (
     <div className={`sidebar ${isOpen ? 'active' : ''}`}>
 
@@ -91,7 +93,9 @@ export default function Sidebar() {
           </div>
 
           <div className="user-text">
-            <div className="username">John Doe</div>
+            {
+              adminUser.is_admin === true && <div className="username">{adminUser.userName}</div>
+            }
             <div className="user-role">Admin</div>
           </div>
 
@@ -99,7 +103,7 @@ export default function Sidebar() {
             className="setting-logo"
             onClick={() => setShowSettings(!showSettings)}
           >
-            <i className="fa-solid fa-gear"></i>
+            {/* <i className="fa-solid fa-gear"></i> */}
           </div>
         </div>
 
